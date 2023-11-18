@@ -1,0 +1,68 @@
+@import "../../variables.scss";
+
+.iconButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font400;
+  background-color: #ffffff;
+  outline: 1px solid #999ea0 !important;
+  color: #999ea0;
+  border-radius: 4px;
+  &.medium {
+    width: 18px;
+    height: 18px;
+  }
+  &.blue:hover {
+    color: $blue;
+    outline-color: $blue;
+    // background: $blueTransparent;
+    svg {
+      path {
+        fill: $blue;
+      }
+    }
+    &.active {
+      background: $blue;
+      color: #fff;
+    }
+  }
+  &.green:hover {
+    color: $green;
+    outline-color: $green;
+    // background: $greenTransparent;
+    svg {
+      path {
+        fill: $green;
+      }
+    }
+    &.active {
+      background: $green;
+      color: #fff;
+    }
+  }
+  &.red:hover {
+    color: $red;
+    outline-color: $red;
+    // background: $redTransparent;
+    svg {
+      path {
+        fill: $red;
+      }
+    }
+    &.active {
+      background: $red;
+      color: #fff;
+    }
+  }
+  &:disabled {
+    color: #999ea0 !important;
+    outline-color: #999ea0 !important;
+    background: #ffffff !important;
+    svg {
+      path {
+        fill: #999ea0 !important;
+      }
+    }
+  }
+}

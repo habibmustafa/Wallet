@@ -1,0 +1,42 @@
+@import "~/assets/styles/variables.scss";
+
+.appbar {
+  height: 72px;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.04);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #fff;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  .withoutText {
+    color: $text;
+    font-family: $font300;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 22.982px; /* 127.678% */
+  }
+
+  .link {
+    color: $primary;
+    font-family: $font400;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px; /* 116.667% */
+  }
+
+  .appbar-text {
+    width: 100%;
+    color: $text;
+    font-family: $font600;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22.982px; /* 95.759% */
+  }
+}

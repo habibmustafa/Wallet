@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import Container from "~/components/container";
 
 interface IMainContent {
   children: ReactElement;
@@ -7,16 +6,17 @@ interface IMainContent {
 
 const MainContent = ({ children }: IMainContent) => {
   return (
-    <Container type="main">
+    <main>
       {/* Height: 96px */}
       {/*<Header />*/}
 
       {/* Container: 1fr */}
-      <main>{children}</main>
+      {/* <main>{children}</main> */}
+      {children}
 
       {/* Height: 72px */}
       {/*<Footer />*/}
-    </Container>
+    </main>
   );
 };
 

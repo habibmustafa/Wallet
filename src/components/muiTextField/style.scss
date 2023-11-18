@@ -1,0 +1,50 @@
+@import "~/assets/styles/variables.scss";
+
+// TextField
+.textField .MuiInputBase-root.MuiOutlinedInput-root {
+  border-bottom: 2px solid #e7e7ed;
+  border-radius: 0;
+  padding: 0;
+
+  & fieldset {
+    display: none;
+  }
+
+  input {
+    -webkit-text-fill-color: #70778b;
+    font-style: normal;
+    font-size: 13px;
+    color: #70778b;
+    font-family: $font400;
+    font-weight: normal;
+    padding: 0;
+    min-height: 36px;
+  }
+
+  .MuiInputAdornment-root {
+    margin-right: 12px;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+
+  &:has(.MuiChip-root) {
+    padding: 8px 4px;
+  }
+
+  // disabled
+  &.Mui-disabled {
+    background-color: #e6e7e7;
+  }
+  // focused
+  &.Mui-focused {
+    border-bottom-color: $primary !important;
+    transition: all 0.3s ease;
+  }
+  // error
+  &.Mui-error {
+    border-bottom-color: $red !important;
+    transition: all 0.3s ease;
+  }
+}

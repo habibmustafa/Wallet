@@ -9,6 +9,7 @@ type IContainer = {
   maxWidth?: string;
   backgroundColor?: string;
   className?: string;
+  height?: string;
   style?: React.CSSProperties;
 };
 
@@ -20,16 +21,18 @@ const Container = ({
   maxWidth,
   backgroundColor,
   className,
+  height,
   style,
 }: IContainer) => {
   return (
     <div
-      className={`${type} ${className}`}
+      className={`${type} ${className ? className : ""}`}
       style={{
         padding,
         margin,
         maxWidth,
         backgroundColor,
+        height,
         ...style,
       }}
     >

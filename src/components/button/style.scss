@@ -1,0 +1,114 @@
+@import "~/assets/styles/fonts.scss";
+@import "~/assets/styles/variables.scss";
+@import "~/assets/styles/media.scss";
+
+.button {
+  cursor: pointer;
+  // all: unset;
+  border: none;
+  outline: none !important;
+  transition: 0.2s;
+  border-radius: 3px;
+  font-family: $font500;
+  gap: 8px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+  // @include media("max", "xs") {
+  //   width: 100%;
+  //   font-size: 12px;
+  //   padding: 0 12px;
+  // }
+
+  &:disabled {
+    opacity: .6 !important;
+    border-color: #efefef !important;
+    color: #efefef !important;
+  }
+  &:hover {
+    opacity: 0.85;
+  }
+  &:active {
+    opacity: 1;
+  }
+
+  // small button
+  &.small {
+    font-size: 12px;
+    line-height: 21.36px;
+    padding: 5px 12px;
+  }
+
+  // medium button
+  &.medium {
+    font-size: 14px;
+    line-height: 140%;
+    padding: 12px 20px;
+  }
+
+  // large button
+  &.large {
+    font-size: 18px;
+    line-height: 24.92px;
+    padding: 12px 20px;
+  }
+
+  // primary button
+  &.primary {
+    background-color: $primary;
+    color: $white;
+  }
+
+  // secondary button
+  &.secondary {
+    background-color: $secondary;
+    color: $white;
+  }
+
+  // green
+  &.green {
+    background-color: $green;
+    color: $white;
+  }
+
+  // red
+  &.red {
+    border-color: $red;
+    color: $red;
+
+    &:hover {
+      background-color: #ffebeb;
+    }
+  }
+
+  // outlined button
+  &.outlined {
+    color: $secondary;
+    border: 1px solid $primary;
+    &:hover {
+      background-color: #f6eefd;
+    }
+  }
+
+  // text button
+  &.text {
+    color: $secondary;
+    background-color: transparent;
+    &:hover {
+      background-color: #f6eefd;
+    }
+  }
+
+  // icon transparent red button
+  &.transparent {
+    background-color: transparent;
+    border-color: transparent;
+    color: transparent;
+    width: 100%;
+    height: auto !important;
+    padding: 0;
+  }
+}

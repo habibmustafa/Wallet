@@ -1,0 +1,118 @@
+@import "~/assets/styles/variables.scss";
+
+.inputInitial {
+  position: relative;
+
+  // error
+  &.error {
+    svg {
+      path {
+        fill: #f05353 !important;
+      }
+    }
+    input {
+      border-color: #f05353 !important;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // warning
+  &.warning {
+    svg {
+      path {
+        fill: #feb72f !important;
+      }
+    }
+    input {
+      border-color: #feb72f !important;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // success
+  &.success {
+    svg {
+      path {
+        fill: #75c245 !important;
+      }
+    }
+    input {
+      border-color: #75c245 !important;
+      transition: all 0.3s ease;
+    }
+  }
+
+  input {
+    all: unset;
+    box-sizing: border-box;
+    font-style: normal;
+    font-size: 13px;
+    color: #70778b;
+    line-height: 100%;
+    width: 100%;
+    outline: none !important;
+    background: #ffffff;
+
+    // 9ea6ba
+    // !color?
+    border-bottom: 2px solid #e7e7ed;
+    transition: all 0.3s ease;
+    min-height: 36px;
+    &::placeholder {
+      color: #999ea0;
+    }
+    // &:hover {
+    //   border-color: #0576b5;
+    //   transition: all 0.3s ease;
+    // }
+    &:focus {
+      border-color: $primary;
+      transition: all 0.3s ease;
+    }
+
+    &:disabled {
+      border-color: #999ea0;
+      background-color: #e6e7e7;
+      transition: all 0.3s ease;
+    }
+  }
+
+  // icon
+  &.with-icon {
+    .inputInitial-icon {
+      position: absolute;
+      top: 0%;
+      bottom: 0;
+      width: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        path {
+          // fill: #999ea0;
+        }
+      }
+    }
+    &.icon-left {
+      .inputInitial-icon {
+        left: 0;
+      }
+      input {
+        padding-left: 35px;
+      }
+    }
+    &.icon-right {
+      .inputInitial-icon {
+        right: 0;
+      }
+      input {
+        padding-right: 35px;
+      }
+    }
+    input:focus ~ svg {
+      path {
+        fill: #0576b5;
+      }
+    }
+  }
+}

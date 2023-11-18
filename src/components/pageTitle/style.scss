@@ -1,0 +1,10 @@
+@import "../../variables.scss";
+
+.page-title {
+  font-family: $font600;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 150%;
+  color: $primary;
+  display: flex;
+}
