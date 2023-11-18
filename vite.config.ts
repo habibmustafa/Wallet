@@ -4,11 +4,11 @@ import { VitePWA } from "vite-plugin-pwa";
 
 const manifestForPlugIn: any = {
   registerType:'prompt',
-  includeAssests:['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
+  includeAssests:['favicon.ico', "apple-touch-icon.png", "maskable_icon.png"],
   manifest:{
-    name:"React-vite-app",
-    short_name:"react-vite-app",
-    description:"I am a simple vite app",
+    name:"Wallet",
+    short_name:"wallet",
+    description:"I am a wallet app",
     icons:[{
       src: '/android-chrome-192x192.png',
       sizes:'192x192',
