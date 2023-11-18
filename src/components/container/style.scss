@@ -1,0 +1,26 @@
+.container {
+  // Component container
+  margin: 0 auto;
+  max-width: 2400px;
+}
+
+.main {
+  // Main container
+  display: grid;
+
+  // Center maximum 1440px, minimum 94%
+  // grid-template-columns: 1fr min(1440px, 94%) 1fr;
+  grid-template-columns: 1fr min(2400px, 94%) 1fr;
+
+  // Header: 96px, Main: 1fr, Footer: 72px
+  grid-template-rows: 96px auto 72px;
+
+  & > * {
+    grid-column: 2;
+  }
+
+  // Fluid: 1fr
+  & > .fluid {
+    grid-column: 1 / -1;
+  }
+}

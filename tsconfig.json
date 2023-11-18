@@ -23,8 +23,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Absolute Path */
+    "baseUrl": "./src",
+	    "paths": {
+	      "~/*": ["./*"]
+	    }
   },
   "include": ["src"],
+  // Svg Component
+  "files": ["custom.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
