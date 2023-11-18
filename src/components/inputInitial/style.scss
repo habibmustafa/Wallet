@@ -46,20 +46,24 @@
     all: unset;
     box-sizing: border-box;
     font-style: normal;
-    font-size: 13px;
-    color: #70778b;
-    line-height: 100%;
+    font-size: 18px;
+    font-family: $font600;
+    font-weight: 600;
+    color: $text;
+    line-height: 115%;
     width: 100%;
     outline: none !important;
     background: #ffffff;
-
-    // 9ea6ba
-    // !color?
-    border-bottom: 2px solid #e7e7ed;
+    border-bottom: 1px solid rgb(29, 33, 47, 0.24);
     transition: all 0.3s ease;
     min-height: 36px;
     &::placeholder {
-      color: #999ea0;
+      color: $text;
+      font-size: 18px;
+      font-family: $font600;
+      font-weight: 600;
+      line-height: 115%;
+      opacity: 0.12;
     }
     // &:hover {
     //   border-color: #0576b5;

@@ -42,7 +42,7 @@ const manifestForPlugIn: any = {
       },
     ],
     theme_color: "#171717",
-    background_color: "#f0e7db",
+    background_color: "#FF3378",
     display: "standalone",
     scope: "/",
     start_url: "/",

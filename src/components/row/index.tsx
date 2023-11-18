@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 
 type IRow = {
-  children: React.ReactElement | string | number;
+  children: React.ReactNode | string | number;
   className?: string;
   justifyContent?: string;
   alignItems?: string;

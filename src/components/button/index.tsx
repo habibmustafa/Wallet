@@ -28,7 +28,7 @@ export default function Button({
   endIcon,
   loading = false, // TODO: add loading state
   className = "",
-  height,
+  height = "48px",
   width,
   padding,
   margin,
