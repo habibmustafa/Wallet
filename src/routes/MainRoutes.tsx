@@ -6,6 +6,7 @@ import PublicRoute from "./PublicRoute";
 import ProtectRoute from "./ProtectRoute";
 import Register from "~/pages/auth/register";
 import Stat from "~/pages/stat";
+import Download from "~/pages/download";
 
 const MainRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const MainRoutes = () => {
               <Route path="/" element={<Stat />} />
             </Route>
           </Route>
+          <Route path="/download" element={<Download />} />
           {/* <Route path="*" element={<Navigate to="/home" />} /> */}
         {/*<Route path="/*" element={<NotFound/>}/>*/}
       </Routes>
