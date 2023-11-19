@@ -1,18 +1,36 @@
-@import "../../variables.scss";
+@import "~/assets/styles/variables.scss";
 
 .iconButton {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  outline: none !important;
   font-family: $font400;
-  background-color: #ffffff;
-  outline: 1px solid #999ea0 !important;
-  color: #999ea0;
-  border-radius: 4px;
-  &.medium {
-    width: 18px;
-    height: 18px;
+  padding: 0 !important;
+  // outline: 1px solid #999ea0 !important;
+  // color: #999ea0;
+  // border-radius: 4px;
+  background-color: transparent !important;
+
+  & svg {
+    fill: $primary;
+    transition: 0.2s;
   }
+
+  &:disabled {
+    svg {
+      transition: 0.2s;
+
+      fill: #cfd4e5;
+    }
+  }
+
+  &.medium {
+    width: 48px;
+    height: 48px;
+  }
+
   &.blue:hover {
     color: $blue;
     outline-color: $blue;
@@ -53,16 +71,6 @@
     &.active {
       background: $red;
       color: #fff;
-    }
-  }
-  &:disabled {
-    color: #999ea0 !important;
-    outline-color: #999ea0 !important;
-    background: #ffffff !important;
-    svg {
-      path {
-        fill: #999ea0 !important;
-      }
     }
   }
 }

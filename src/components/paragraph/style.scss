@@ -1,3 +1,15 @@
+@import "~/assets/styles/variables.scss";
+
 .customParagraph {
   margin: 0;
+
+  &:not(.customLabel) {
+    color: $text;
+    font-family: $font400;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    opacity: 0.6;
+  }
 }

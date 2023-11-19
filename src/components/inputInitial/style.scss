@@ -65,6 +65,10 @@
       line-height: 115%;
       opacity: 0.12;
     }
+
+    &[type="pass"] {
+      -webkit-text-security: disc;
+    }
     // &:hover {
     //   border-color: #0576b5;
     //   transition: all 0.3s ease;

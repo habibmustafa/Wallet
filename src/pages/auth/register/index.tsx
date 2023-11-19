@@ -11,24 +11,34 @@ import { Grid } from "@mui/material";
 import Button from "~/components/button";
 import { Link, useNavigate } from "react-router-dom";
 import IconButton from "~/components/iconButton";
+import Paragraph from "~/components/paragraph";
 
-const Login = () => {
+const Register = () => {
   const methods = useForm();
   const navigate = useNavigate();
-  const { email, password } = methods.watch();
+  const { name, email, password } = methods.watch();
 
   return (
-    <Container className="login">
+    <Container className="register">
       <AppBar>
         <Text className="withoutText">Budget tracker</Text>
-        <Link to="/register"><Text className="link">Sign Up</Text></Link>
+        <Link to="/login"><Text className="link">Login</Text></Link>
       </AppBar>
-      <Container margin="40px 36px 60px" className="login-container">
+      <Container margin="40px 36px 60px" className="register-container">
         <LoginImage />
         <FormProvider {...methods}>
           <Grid container gap={4} sx={{ marginTop: "24px" }}>
             <Grid item xs={12}>
-              <Heading>Login to your account</Heading>
+              <Heading>Sign up to Budget tracker</Heading>
+              <Paragraph margin="14px 0 0">Keep your finantial data store to our server so that you can access from anywhere you want</Paragraph>
+            </Grid>
+            <Grid item xs={12}>
+              <InputUseForm
+                label="Your name"
+                name="name"
+                placeholder="Your name"
+                // validation={inputValidationProps("", true)}
+              />
             </Grid>
             <Grid item xs={12}>
               <InputUseForm
@@ -51,7 +61,7 @@ const Login = () => {
                   console.log(data);
                   navigate("/");
                 })}
-                disabled={!email || !password}
+                disabled={!name || !email || !password}
               >
                 <RightButton />
               </IconButton>
@@ -68,7 +78,7 @@ const Login = () => {
             console.log("clicked");
           }}
         >
-          Login with Google
+          Sign up with Google
         </Button>
         <Text fontSize="12px" lineHeight="14px" style={{ opacity: 0.5 }}>
           Forgot password?
@@ -78,4 +88,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
