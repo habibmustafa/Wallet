@@ -8,7 +8,7 @@
 
     // pwa client
     "types": [
-      "vite-plugin-pwa/client"
+      "vite-plugin-pwa/client", "node"
     ],
 
     /* Bundler mode */

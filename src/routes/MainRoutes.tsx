@@ -5,6 +5,7 @@ import Login from "~/pages/auth/login";
 import PublicRoute from "./PublicRoute";
 import ProtectRoute from "./ProtectRoute";
 import Register from "~/pages/auth/register";
+import Stat from "~/pages/stat";
 
 const MainRoutes = () => {
   return (
@@ -20,7 +21,7 @@ const MainRoutes = () => {
           </Route>
           <Route path="/" element={<ProtectRoute />}>
             <Route path="/" element={<InnerRoute />}>
-              {/* <Route path="" element={<Login />} /> */}
+              <Route path="/" element={<Stat />} />
             </Route>
           </Route>
           {/* <Route path="*" element={<Navigate to="/home" />} /> */}
