@@ -47,6 +47,9 @@ const manifestForPlugIn: any = {
     scope: "/",
     start_url: "/",
     orientation: "portrait",
+    statusbar: {
+      color: "#fcfcfc",
+    }
   },
 };
 
