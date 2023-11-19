@@ -43,7 +43,7 @@ const Login = () => {
                 validation={inputValidationProps("", true)}
               />
               <RightButton
-                width="70px"
+                width="68px"
                 onClick={methods.handleSubmit((data) => {
                   console.log(data);
                 })}
