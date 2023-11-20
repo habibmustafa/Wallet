@@ -84,13 +84,6 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     VitePWA({
       ...manifestForPlugIn,
-      // registerType: "autoUpdate",
-      // injectRegister: "auto",
-      // workbox: {
-      //   clientsClaim: true,
-      //   skipWaiting: true,
-      //   globPatterns: ["**/*"],
-      // },
       devOptions: {
         enabled: true,
       },

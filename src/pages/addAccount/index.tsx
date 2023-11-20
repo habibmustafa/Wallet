@@ -6,7 +6,7 @@ import "./style.scss";
 const AddAccount = () => {
   return (
     <Container className="add-account">
-      <AppBar text="Add account" search={false} />
+      <AppBar title="Add account" search={false} />
       <Container className="add-account-container">
         <Bank />
       </Container>
