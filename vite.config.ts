@@ -91,9 +91,9 @@ export default defineConfig({
       //   skipWaiting: true,
       //   globPatterns: ["**/*"],
       // },
-      // devOptions: {
-      //   enabled: true,
-      // },
+      devOptions: {
+        enabled: true,
+      },
     }),
   ],
 });
