@@ -29,10 +29,10 @@ type Config = {
 
 export function registerServiceWorker(config?: Config) {
   if ('serviceWorker' in navigator) {
-    const publicUrl = new URL(
-      (process as { env: { [key: string]: string } }).env.PUBLIC_URL,
-      window.location.href
-    );
+    // const publicUrl = new URL(
+    //   (process as { env: { [key: string]: string } }).env.PUBLIC_URL,
+    //   window.location.href
+    // );
     const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
     navigator.serviceWorker.ready
