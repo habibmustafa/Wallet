@@ -9,7 +9,7 @@ import * as path from "path";
 
 // PWA
 const manifestForPlugIn: any = {
-  registerType: "prompt",
+  registerType: "autoUpdate",
   includeAssests: ["favicon.ico", "apple-touch-icon.png", "maskable_icon.png"],
   manifest: {
     name: "Wallet",
