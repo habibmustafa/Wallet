@@ -1,29 +1,21 @@
-// This optional code is used to register a service worker.
-// register() is not called by default.
+// src/serviceWorkerRegistration.ts
 
-// This lets the app load faster on subsequent visits in production, and gives
-// it offline capabilities. However, it also means that developers (and users)
-// will only see deployed updates on subsequent visits to a page, after all the
-// existing tabs open on the page have been closed, since previously cached
-// resources are updated in the background.
+interface Config {
+  onSuccess?: (registration: ServiceWorkerRegistration) => void;
+  onError?: (error: Error) => void;
+}
 
-// To learn more about the benefits of this model and instructions on how to
-// opt-in, read https://bit.ly/CRA-PWA
-
-
-
-
-export function register(config: any) {
+export function register(config?: Config): void {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('/service-worker.js')
-      .then((registration) => {
+      .then((registration: ServiceWorkerRegistration) => {
         console.log('Service Worker registered with scope:', registration.scope);
         if (config && config.onSuccess) {
           config.onSuccess(registration);
         }
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         console.error('Error during Service Worker registration:', error);
         if (config && config.onError) {
           config.onError(error);
@@ -32,13 +24,13 @@ export function register(config: any) {
   }
 }
 
-export function unregister() {
+export function unregister(): void {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
-      .then((registration) => {
+      .then((registration: ServiceWorkerRegistration) => {
         registration.unregister();
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         console.error('Error during Service Worker unregistration:', error);
       });
   }
