@@ -15,6 +15,12 @@ const manifestForPlugIn: any = {
     name: "Wallet",
     short_name: "wallet",
     description: "I am a wallet app",
+    theme_color: "#fcfcfc",
+    background_color: "#fcfcfc",
+    display: "standalone",
+    scope: "/",
+    start_url: "/",
+    orientation: "portrait",
     icons: [
       {
         src: "/android-chrome-192x192.png",
@@ -41,12 +47,6 @@ const manifestForPlugIn: any = {
         purpose: "any maskable",
       },
     ],
-    theme_color: "#fcfcfc",
-    background_color: "#fcfcfc",
-    display: "standalone",
-    scope: "/",
-    start_url: "/",
-    orientation: "portrait",
   },
 };
 
@@ -82,6 +82,18 @@ export default defineConfig({
     svgr(),
     react(),
     splitVendorChunkPlugin(),
-    VitePWA(manifestForPlugIn),
+    VitePWA({
+      ...manifestForPlugIn,
+      injectRegister: "auto",
+      registerType: "autoUpdate",
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+      },
+      devOptions: {
+        enabled: true,
+      },
+    }),
   ],
 });
