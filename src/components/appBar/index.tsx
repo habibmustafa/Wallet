@@ -17,7 +17,7 @@ type IAppBar = {
 const AppBar = ({
   children,
   leftIcon = <Backspace />,
-  text = "Add account",
+  text,
   search = true,
   add,
 }: IAppBar) => {
