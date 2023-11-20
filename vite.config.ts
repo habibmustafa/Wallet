@@ -85,7 +85,7 @@ export default defineConfig({
     VitePWA({
       ...manifestForPlugIn,
       registerType: "autoUpdate",
-      injectRegister: "inline",
+      injectRegister: "auto",
       workbox: {
         clientsClaim: true,
         skipWaiting: true,
