@@ -29,7 +29,7 @@ const Login = () => {
 
       <CustomAppBar  />
       {/* Container */}
-      <Container padding="40px 36px 60px" className="login-container">
+      <Container padding="40px 20px 60px" className="login-container" maxWidth="800px">
         {/* Image */}
         <LoginImage style={{minHeight: "75px"}} />
 
