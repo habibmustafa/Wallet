@@ -90,7 +90,7 @@ const Login = () => {
           Forgot password?
         </Text>
       </Container>
-      <div style={{position: "absolute", bottom: 0, right: 0}}>absolute</div>
+      <div style={{backgroundColor: "aqua", height: 40, width: "100%", position: "fixed", bottom: 0}}>bananaaa</div>
     </Container>
   );
 };
