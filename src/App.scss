@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   // min-height: 100vh;
-  height: 100%;
+  max-height: 100%;
   background-color: #FCFCFC;
 }
 
@@ -22,7 +22,7 @@ html {
 }
 
 #root {
-  // height: 100vh;
+  height: 100%;
 }
 * {
   font-family: $font400, sans-serif;
@@ -85,23 +85,23 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 4px;
   height: 8px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   border-radius: 40px;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #c9c8c7;
   border-radius: 40px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #c9c8c7;
 }
