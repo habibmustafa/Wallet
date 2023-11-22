@@ -35,7 +35,7 @@ const Register = () => {
         maxWidth="800px"
       >
         {/* Image */}
-        <LoginImage  style={{ minHeight: "120px" }}/>
+        <LoginImage  style={{ minHeight: "164px" }}/>
 
         {/* Input form */}
         <FormProvider {...methods}>
