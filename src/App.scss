@@ -19,6 +19,10 @@ html {
     font-size: 8px;
   }
 }
+
+#root {
+  height: 100vh;
+}
 * {
   font-family: $font400, sans-serif;
   box-sizing: border-box;

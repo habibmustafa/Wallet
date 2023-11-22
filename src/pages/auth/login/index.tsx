@@ -8,7 +8,7 @@ import InputUseForm from "~/components/inputUseForm";
 import { FormProvider, useForm } from "react-hook-form";
 import { Grid } from "@mui/material";
 import Button from "~/components/button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "~/components/iconButton";
 import CustomAppBar from "~/components/appBar";
 
@@ -20,18 +20,21 @@ const Login = () => {
   return (
     <Container className="login">
       {/* App bar */}
-      {/* <AppBar>
-        <Text className="withoutText">Budget tracker</Text>
+      <CustomAppBar>
+        <Text className="text">Budget tracker</Text>
         <Link to="/register">
           <Text className="link">Sign Up</Text>
         </Link>
-      </AppBar> */}
+      </CustomAppBar>
 
-      <CustomAppBar  />
       {/* Container */}
-      <Container padding="40px 20px 60px" className="login-container" maxWidth="800px">
+      <Container
+        padding="40px 18px"
+        className="login-container"
+        maxWidth="800px"
+      >
         {/* Image */}
-        <LoginImage style={{minHeight: "75px"}} />
+        <LoginImage style={{ minHeight: "120px" }} />
 
         {/* Input form */}
         <FormProvider {...methods}>

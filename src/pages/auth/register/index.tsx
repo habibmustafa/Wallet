@@ -1,4 +1,4 @@
-import AppBar from "~/components/appBar";
+import CustomAppBar from "~/components/appBar";
 import "./style.scss";
 import Container from "~/components/container";
 import Text from "~/components/text";
@@ -20,17 +20,32 @@ const Register = () => {
 
   return (
     <Container className="register">
-      <AppBar>
-        <Text className="withoutText">Budget tracker</Text>
-        <Link to="/login"><Text className="link">Login</Text></Link>
-      </AppBar>
-      <Container margin="40px 36px 60px" className="register-container">
-        <LoginImage />
+      {/* App bar */}
+      <CustomAppBar>
+        <Text className="text">Budget tracker</Text>
+        <Link to="/login">
+          <Text className="link">Login</Text>
+        </Link>
+      </CustomAppBar>
+
+      {/* Container */}
+      <Container
+        padding="40px 18px"
+        className="register-container"
+        maxWidth="800px"
+      >
+        {/* Image */}
+        <LoginImage  style={{ minHeight: "120px" }}/>
+
+        {/* Input form */}
         <FormProvider {...methods}>
           <Grid container gap={4} sx={{ marginTop: "24px" }}>
             <Grid item xs={12}>
               <Heading>Sign up to Budget tracker</Heading>
-              <Paragraph margin="14px 0 0">Keep your finantial data store to our server so that you can access from anywhere you want</Paragraph>
+              <Paragraph margin="14px 0 0">
+                Keep your finantial data store to our server so that you can
+                access from anywhere you want
+              </Paragraph>
             </Grid>
             <Grid item xs={12}>
               <InputUseForm
@@ -68,9 +83,13 @@ const Register = () => {
             </Grid>
           </Grid>
         </FormProvider>
+
+        {/* Or */}
         <Text fontSize="12px" lineHeight="14px" style={{ opacity: 0.5 }}>
           or
         </Text>
+
+        {/* Sign up with Google */}
         <Button
           style={{ borderColor: "#3B5998", color: "#3B5998", width: "100%" }}
           variant="outlined"
@@ -80,6 +99,8 @@ const Register = () => {
         >
           Sign up with Google
         </Button>
+
+        {/* Forgot password */}
         <Text fontSize="12px" lineHeight="14px" style={{ opacity: 0.5 }}>
           Forgot password?
         </Text>

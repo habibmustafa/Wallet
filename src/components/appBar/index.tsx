@@ -20,46 +20,38 @@ type IAppBar = {
 };
 
 const CustomAppBar = ({
-  // children,
+  children,
   backIcon = true,
-  title = "Add Expense",
+  title,
   search = true,
   add,
   searchHandle,
   addHandle,
-  // datePicker,
-  // datePickerProps,
-}: IAppBar) => {
+}: // datePicker,
+// datePickerProps,
+IAppBar) => {
   const onBackHandle = () => {};
 
   return (
     <Container className="appbar">
-      {backIcon && (
-        <IconButton onClick={onBackHandle}>{<Backspace />}</IconButton>
-      )}
-      <Text className="appbar-text">{title}</Text>
-      {(search || add) && (
+      {!children ? (
         <React.Fragment>
-          {add && <IconButton onClick={addHandle}>{<Add />}</IconButton>}
-          {search && (
-            <IconButton onClick={searchHandle}>{<Search />}</IconButton>
+          {backIcon && (
+            <IconButton onClick={onBackHandle}>{<Backspace />}</IconButton>
           )}
-        </React.Fragment>
-      )}
-      {/* {!children ? (
-        <React.Fragment>
-          {leftIcon}
           <Text className="appbar-text">{title}</Text>
           {(search || add) && (
-            <React.Fragment>
-              {add && <Add />}
-              {search && <Search />}
-            </React.Fragment>
+            <>
+              {add && <IconButton onClick={addHandle}>{<Add />}</IconButton>}
+              {search && (
+                <IconButton onClick={searchHandle}>{<Search />}</IconButton>
+              )}
+            </>
           )}
         </React.Fragment>
       ) : (
         children
-      )} */}
+      )}
     </Container>
   );
 };

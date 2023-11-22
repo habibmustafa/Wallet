@@ -6,13 +6,13 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   background-color: #fff;
-  padding: 0 12px;
+  padding: 0 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
 
-  .withoutText {
+  .text {
     color: $text;
     font-family: $font300;
     font-size: 18px;
