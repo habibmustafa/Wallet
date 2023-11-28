@@ -14,6 +14,10 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx">
+      if("virtualKeyboard" in navigator) {
+        navigator.virtualKeyboard.overlaysContent = true;
+      }
+    </script>
   </body>
 </html>
