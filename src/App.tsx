@@ -4,6 +4,7 @@ import "./App.scss";
 function App() {
   if("virtualKeyboard" in navigator) {
     // @ts-ignore
+    navigator.virtualKeyboard.show()
     var height = navigator.virtualKeyboard?.boundingRect?.height
   }
 
