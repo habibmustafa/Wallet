@@ -7,7 +7,7 @@ import Download from "~/pages/download";
 import { Suspense, lazy } from "react";
 const Login = lazy(() => import("~/pages/auth/login"));
 const Register = lazy(() => import("~/pages/auth/register"));
-const Stat = lazy(() => import("~/pages/stat"));
+// const Stat = lazy(() => import("~/pages/stat"));
 const AddAccount = lazy(() => import("~/pages/addAccount"));
 
 const MainRoutes = () => {

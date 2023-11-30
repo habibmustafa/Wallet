@@ -10,7 +10,6 @@ import { Grid } from "@mui/material";
 import InputUseForm from "~/components/inputUseForm";
 import IconButton from "~/components/iconButton";
 import { useNavigate } from "react-router-dom";
-import ColorPicker from "~/components/colorPicker";
 import ColorPickerUseForm from "~/components/colorPickerUseForm";
 
 const AddAccount = () => {
