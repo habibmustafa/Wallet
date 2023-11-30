@@ -1,0 +1,19 @@
+@import "~/assets/styles/variables.scss";
+
+.customColorPicker {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 13px;
+
+  .color {
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+
+    &.selected {
+      border: 1px solid white;
+      outline: 2px solid $black;
+    }
+  }
+}

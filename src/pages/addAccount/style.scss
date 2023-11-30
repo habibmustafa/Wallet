@@ -1,4 +1,12 @@
 .add-account {
-  overflow-y: auto; /* Dikey kaydırma etkin */
-  scroll-snap-type: y mandatory; /* Kaydırma noktalarını etkinleştir */
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+
+  &-container {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
 }
