@@ -24,10 +24,10 @@ const MainRoutes = () => {
             <Route path="" element={<Register />} />
           </Route>
           <Route path="/" element={<ProtectRoute />}>
-            <Route path="/" element={<InnerRoute />}>
+            {/* <Route path="/" element={<InnerRoute />}> */}
               <Route path="/" element={<AddAccount />} />
               {/* <Route path="/" element={<Stat />} /> */}
-            </Route>
+            {/* </Route> */}
           </Route>
           <Route path="/download" element={<Download />} />
           {/* <Route path="*" element={<Navigate to="/home" />} /> */}
