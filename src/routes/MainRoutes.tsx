@@ -1,6 +1,6 @@
 // import {Suspense} from "react";
 import { Routes, Route } from "react-router-dom";
-import InnerRoute from "./InnerRoute";
+// import InnerRoute from "./InnerRoute";
 import PublicRoute from "./PublicRoute";
 import ProtectRoute from "./ProtectRoute";
 import Download from "~/pages/download";
