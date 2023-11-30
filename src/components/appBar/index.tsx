@@ -37,7 +37,9 @@ IAppBar) => {
       {!children ? (
         <React.Fragment>
           {backIcon && (
-            <IconButton onClick={onBackHandle}>{<Backspace />}</IconButton>
+            <IconButton onClick={onBackHandle} style={{ padding: 0 }}>
+              {<Backspace />}
+            </IconButton>
           )}
           <Text className="appbar-text">{title}</Text>
           {(search || add) && (

@@ -18,7 +18,7 @@ const Login = () => {
   const { email, password } = methods.watch();
 
   return (
-    <Container className="login">
+    <Container motion className="login">
       {/* App bar */}
       <CustomAppBar>
         <Text className="text">Budget tracker</Text>
@@ -90,7 +90,6 @@ const Login = () => {
           Forgot password?
         </Text>
       </Container>
-      <p style={{position: "absolute", bottom: 0}}>banananaaaa</p>
     </Container>
   );
 };

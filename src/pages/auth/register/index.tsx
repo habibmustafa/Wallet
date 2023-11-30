@@ -19,7 +19,7 @@ const Register = () => {
   const { name, email, password } = methods.watch();
 
   return (
-    <Container className="register">
+    <Container motion className="register">
       {/* App bar */}
       <CustomAppBar>
         <Text className="text">Budget tracker</Text>
@@ -35,7 +35,7 @@ const Register = () => {
         maxWidth="800px"
       >
         {/* Image */}
-        <LoginImage style={{ minHeight: "64px" }}/>
+        <LoginImage style={{ minHeight: "64px" }} />
 
         {/* Input form */}
         <FormProvider {...methods}>

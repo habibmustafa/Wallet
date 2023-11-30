@@ -11,17 +11,17 @@ import InputUseForm from "~/components/inputUseForm";
 import IconButton from "~/components/iconButton";
 import { useNavigate } from "react-router-dom";
 import ColorPickerUseForm from "~/components/colorPickerUseForm";
+import { useState } from "react";
+import SuccessPopUp from "./successPopUp";
 
 const AddAccount = () => {
+  const [open, setOpen] = useState(true);
   const methods = useForm();
   const navigate = useNavigate();
-  const { accountName, amount, color } = methods.watch();
-
-  console.log(color);
-  
+  const { accountName, amount, colorId } = methods.watch();
 
   return (
-    <Container className="add-account">
+    <Container motion className="add-account">
       <CustomAppBar title="Add account" search={false} />
       <Container
         className="add-account-container"
@@ -34,11 +34,11 @@ const AddAccount = () => {
         {/* Input form */}
         <FormProvider {...methods}>
           <Grid container gap={4} sx={{ marginTop: "24px" }}>
-            <Grid item xs={12} maxWidth={"264px"} mb={3}>
+            <Grid item xs={12} mb={3}>
               <Heading>Add primary bank account</Heading>
             </Grid>
             <Grid item xs={12}>
-              <ColorPickerUseForm label="Select color" name="color" colors={colors} />
+              <ColorPickerUseForm label="Select color" name="colorId" colors={colors} />
             </Grid>
             <Grid item xs={12}>
               <InputUseForm
@@ -58,7 +58,7 @@ const AddAccount = () => {
                   console.log(data);
                   navigate("/");
                 })}
-                disabled={!accountName || !amount}
+                disabled={!accountName || !amount || !colorId}
               >
                 <RightButton />
               </IconButton>
@@ -66,6 +66,8 @@ const AddAccount = () => {
           </Grid>
         </FormProvider>
       </Container>
+
+      <SuccessPopUp open={open} setOpen={setOpen} />
     </Container>
   );
 };
