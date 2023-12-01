@@ -17,7 +17,7 @@ const AddAccount = () => {
   const [open, setOpen] = useState(false);
   const methods = useForm();
   const { accountName, amount, colorId } = methods.watch();
-
+ 
   return (
     <Container motion className="add-account">
       <CustomAppBar title="Add account" firstButton={"none"} />
