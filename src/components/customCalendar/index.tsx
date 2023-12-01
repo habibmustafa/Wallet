@@ -3,7 +3,7 @@ import * as dateFns from "date-fns";
 import { useState } from "react";
 import "./style.scss"
 import {ReactComponent as Left} from "~/assets/icons/left.svg";
-import {ReactComponent as Right} from "~/assets/icons/Right.svg";
+import {ReactComponent as Right} from "~/assets/icons/right.svg";
 
 type CustomCalendarProps = {
   variant?: string;
