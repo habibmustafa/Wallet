@@ -69,9 +69,6 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
       const startOfJanuary = dateFns.endOfMonth(
         dateFns.setMonth(startOfYear, 0)
       );
-      const endOfDecember = dateFns.endOfMonth(
-        dateFns.setMonth(startOfYear, 11)
-      );
       return dateFns.eachMonthOfInterval({
         start: startOfJanuary,
         end: dateFns.endOfYear(selectedDate),
