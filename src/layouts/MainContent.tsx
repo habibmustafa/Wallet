@@ -1,4 +1,7 @@
 import { ReactElement } from "react";
+import { Outlet } from "react-router-dom";
+import BottomTabScreen from "~/components/bottomTabScreen";
+import Container from "~/components/container";
 
 interface IMainContent {
   children: ReactElement;
@@ -6,17 +9,13 @@ interface IMainContent {
 
 const MainContent = ({ children }: IMainContent) => {
   return (
-    <main>
-      {/* Height: 96px */}
-      {/*<Header />*/}
-
-      {/* Container: 1fr */}
-      {/* <main>{children}</main> */}
-      {children}
-
-      {/* Height: 72px */}
-      {/*<Footer />*/}
-    </main>
+    <Container
+      className="main-content"
+      style={{ display: "grid", gridTemplateRows: "minmax(0, 1fr) auto" }}
+    >
+      <Outlet />
+      <BottomTabScreen />
+    </Container>
   );
 };
 
