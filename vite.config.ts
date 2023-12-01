@@ -84,6 +84,7 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     VitePWA({
       ...manifestForPlugIn,
+      includeAssets: ["/public/fonts/GT-Walsheim-Pro-Regular.OTF", "/public/fonts/GT-Walsheim-Pro-Medium.OTF", "/public/fonts/GT-Walsheim-Pro-Bold.OTF"],
       devOptions: {
         enabled: true,
       },
