@@ -15,8 +15,8 @@ type IAppBar = {
   children?: React.ReactNode;
   backIcon?: boolean;
   title?: string;
-  firstButton?: "search" | "add" | "settings" | "clear" | "none";
-  secondButton?: "search" | "add" | "settings" | "clear" | "none";
+  firstButton?: "search" | "add" | "settings" | "clear" | undefined;
+  secondButton?: "search" | "add" | "settings" | "clear" | undefined;
   firstButtonHandle?: () => void;
   secondButtonHandle?: () => void;
   datePicker?: boolean;
@@ -39,7 +39,7 @@ const CustomAppBar = ({
   backIcon = true,
   title,
   firstButton = "search",
-  secondButton = "none",
+  secondButton,
   firstButtonHandle,
   secondButtonHandle,
   calendar,
@@ -68,12 +68,12 @@ IAppBar) => {
             {(firstButton || secondButton) && (
             <>
               {firstButton && (
-                <IconButton onClick={firstButtonHandle} style={{ padding: 0, marginRight: 14 }}>
+                <IconButton onClick={firstButtonHandle} style={{ padding: 0 }}>
                   {iconMap[firstButton]}
                 </IconButton>
               )}
               {secondButton && (
-                <IconButton onClick={secondButtonHandle} style={{ padding: 0 }}>
+                <IconButton onClick={secondButtonHandle} style={{ padding: 0, marginLeft: 14 }}>
                   {iconMap[secondButton]}
                 </IconButton>
               )}

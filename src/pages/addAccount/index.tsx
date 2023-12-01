@@ -20,7 +20,7 @@ const AddAccount = () => {
  
   return (
     <Container motion className="add-account">
-      <CustomAppBar title="Add account" firstButton={"none"} />
+      <CustomAppBar title="Add account" firstButton={undefined} />
       <Container
         className="add-account-container"
         padding="40px 18px"
