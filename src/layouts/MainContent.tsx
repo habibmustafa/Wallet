@@ -1,13 +1,13 @@
-import { ReactElement } from "react";
+// import { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import BottomTabScreen from "~/components/bottomTabScreen";
 import Container from "~/components/container";
 
-interface IMainContent {
-  children: ReactElement;
-}
+// interface IMainContent {
+//   children: ReactElement;
+// }
 
-const MainContent = ({ children }: IMainContent) => {
+const MainContent = () => {
   return (
     <Container
       className="main-content"
