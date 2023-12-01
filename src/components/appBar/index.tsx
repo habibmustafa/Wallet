@@ -5,29 +5,47 @@ import React from "react";
 import { ReactComponent as Backspace } from "~/assets/icons/backspace.svg";
 import { ReactComponent as Search } from "~/assets/icons/search.svg";
 import { ReactComponent as Add } from "~/assets/icons/add.svg";
+import { ReactComponent as Settings } from "~/assets/icons/settings.svg";
+import { ReactComponent as Clear } from "~/assets/icons/clear.svg";
 import { IconButton } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
+import CustomCalendar from "../customCalendar";
 
 type IAppBar = {
   children?: React.ReactNode;
   backIcon?: boolean;
   title?: string;
-  search?: boolean;
-  add?: boolean;
-  searchHandle?: () => void;
-  addHandle?: () => void;
+  firstButton?: "search" | "add" | "settings" | "clear" | "none";
+  secondButton?: "search" | "add" | "settings" | "clear" | "none";
+  firstButtonHandle?: () => void;
+  secondButtonHandle?: () => void;
   datePicker?: boolean;
   datePickerProps?: any;
+  calendar?: boolean;
+  calendarProps?: {
+    variant?: string;
+  };
 };
+
+const iconMap: Record<string, React.ReactElement> = {
+  search: <Search />,
+  add: <Add />,
+  settings: <Settings />,
+  clear: <Clear />,
+  none: <></>,
+};
+
 
 const CustomAppBar = ({
   children,
   backIcon = true,
   title,
-  search = true,
-  add,
-  searchHandle,
-  addHandle,
+  firstButton = "search",
+  secondButton = "none",
+  firstButtonHandle,
+  secondButtonHandle,
+  calendar,
+  calendarProps
 }: // datePicker,
 // datePickerProps,
 IAppBar) => {
@@ -41,22 +59,36 @@ IAppBar) => {
   return (
     <Container className="appbar">
       {!children ? (
-        <React.Fragment>
-          {backIcon && (
-            <IconButton onClick={onBackHandle} style={{ padding: 0 }}>
-              {<Backspace />}
-            </IconButton>
-          )}
-          <Text className="appbar-text">{title}</Text>
-          {(search || add) && (
+        <>
+          <div className="appbar-main">
+            {backIcon && (
+              <IconButton onClick={onBackHandle} style={{ padding: 0 }}>
+                {<Backspace />}
+              </IconButton>
+            )}
+            <Text className="appbar-text">{title}</Text>
+            {(firstButton || secondButton) && (
             <>
-              {add && <IconButton onClick={addHandle}>{<Add />}</IconButton>}
-              {search && (
-                <IconButton onClick={searchHandle}>{<Search />}</IconButton>
+              {firstButton && (
+                <IconButton onClick={firstButtonHandle} style={{ padding: 0 }}>
+                  {iconMap[firstButton]}
+                </IconButton>
+              )}
+              {secondButton && (
+                <IconButton onClick={secondButtonHandle} style={{ padding: 0 }}>
+                  {iconMap[secondButton]}
+                </IconButton>
               )}
             </>
           )}
-        </React.Fragment>
+          </div>
+
+          {calendar && (
+            <div className="appbar-calendar">
+              <CustomCalendar {...calendarProps} />
+            </div>
+          )}
+        </>
       ) : (
         children
       )}

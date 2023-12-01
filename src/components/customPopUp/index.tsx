@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog, Slide } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
-import { ReactComponent as Clear } from "~/assets/icons/clear.svg";
+import { ReactComponent as Plus } from "~/assets/icons/plus.svg";
 import Container from "../container";
 import Row from "../row";
 import "./style.scss";
@@ -21,7 +21,7 @@ const CustomPopUp = ({ open, handleClose, children }: customPopUpProps) => {
     >
       <div className="custom-modal">
         <Row className="custom-modal-header">
-          <Clear onClick={handleClose} />
+          <Plus onClick={handleClose} />
         </Row>
         <Container className="custom-modal-container">{children}</Container>
       </div>
