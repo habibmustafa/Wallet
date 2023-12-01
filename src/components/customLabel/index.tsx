@@ -9,10 +9,11 @@ interface ICustomLabel extends IParagraph {
 const CustomLabel: FC<ICustomLabel> = ({
   children,
   margin,
+  className,
   ...props
 }) => {
   return (
-    <Paragraph {...props} margin={margin} className="customLabel">
+    <Paragraph {...props} margin={margin} className={`customLabel ${className}`}>
       {children}
     </Paragraph>
   );

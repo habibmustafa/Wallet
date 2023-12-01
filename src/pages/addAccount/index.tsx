@@ -9,15 +9,13 @@ import Heading from "~/components/heading";
 import { Grid } from "@mui/material";
 import InputUseForm from "~/components/inputUseForm";
 import IconButton from "~/components/iconButton";
-import { useNavigate } from "react-router-dom";
 import ColorPickerUseForm from "~/components/colorPickerUseForm";
 import { useState } from "react";
 import SuccessPopUp from "./successPopUp";
 
 const AddAccount = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const methods = useForm();
-  const navigate = useNavigate();
   const { accountName, amount, colorId } = methods.watch();
 
   return (
@@ -56,7 +54,7 @@ const AddAccount = () => {
               <IconButton
                 onClick={methods.handleSubmit((data) => {
                   console.log(data);
-                  navigate("/");
+                  setOpen(true)
                 })}
                 disabled={!accountName || !amount || !colorId}
               >

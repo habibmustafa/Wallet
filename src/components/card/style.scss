@@ -1,0 +1,30 @@
+@import "~/assets/styles/variables.scss";
+
+.card {
+  padding: 30px 34px;
+  border-radius: 10px;
+  max-width: 370px;
+
+  .divider {
+    height: 28px;
+    width: 1px;
+    background-color: #fff;
+    opacity: 0.4;
+    stroke-width: 0.5;
+  }
+  &-background {
+    background: linear-gradient(343deg, #7562ff -23.53%, #33c9ff 120.42%);
+
+    &-label {
+      color: #fff !important;
+      opacity: 0.4;
+      margin-bottom: 6px;
+    }
+    &-text {
+      color: #fff;
+      font-size: 20px;
+      font-family: $font600;
+      font-weight: 600;
+    }
+  }
+}

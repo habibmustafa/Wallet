@@ -8,14 +8,16 @@ import InputUseForm from "~/components/inputUseForm";
 import { FormProvider, useForm } from "react-hook-form";
 import { Grid } from "@mui/material";
 import Button from "~/components/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import IconButton from "~/components/iconButton";
 import CustomAppBar from "~/components/appBar";
+import { useAppDispatch } from "~/redux/store";
+import { setLogin } from "~/redux/reducers/auth";
 
 const Login = () => {
   const methods = useForm();
-  const navigate = useNavigate();
   const { email, password } = methods.watch();
+  const dispatch = useAppDispatch();
 
   return (
     <Container motion className="login">
@@ -59,7 +61,7 @@ const Login = () => {
               <IconButton
                 onClick={methods.handleSubmit((data) => {
                   console.log(data);
-                  navigate("/");
+                  dispatch(setLogin());
                 })}
                 disabled={!email || !password}
               >

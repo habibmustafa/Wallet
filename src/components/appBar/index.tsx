@@ -6,6 +6,7 @@ import { ReactComponent as Backspace } from "~/assets/icons/backspace.svg";
 import { ReactComponent as Search } from "~/assets/icons/search.svg";
 import { ReactComponent as Add } from "~/assets/icons/add.svg";
 import { IconButton } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 type IAppBar = {
   children?: React.ReactNode;
@@ -30,7 +31,12 @@ const CustomAppBar = ({
 }: // datePicker,
 // datePickerProps,
 IAppBar) => {
-  const onBackHandle = () => {};
+  const navigate = useNavigate();
+
+  
+  const onBackHandle = () => {
+    navigate(-1)
+  };
 
   return (
     <Container className="appbar">

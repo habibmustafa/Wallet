@@ -11,8 +11,11 @@ const auth = createSlice({
     logOut(state: any) {
       state.isAuth = false;
     },
+    setLogin(state: any) {
+      state.isAuth = true;
+    }
   },
 });
 
-export const { logOut } = auth.actions;
+export const { logOut, setLogin } = auth.actions;
 export default auth.reducer;
