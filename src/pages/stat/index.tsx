@@ -4,7 +4,7 @@ import "./style.scss";
 import { useState } from "react";
 
 const Stat = () => {
-  const [variant, setVariant] = useState("week");
+  const [variant, setVariant] = useState("half-year");
 
   return (
     <Container motion className="stat">
@@ -13,11 +13,11 @@ const Stat = () => {
         title="Stat"
         calendar
         calendarProps={{
-          variant,
+          variant: variant as "month" | "week" | "year" | "half-year"
         }}
-        firstButton={variant === "week" ? "search" : "add"}
+        firstButton={variant === "half-year" ? "search" : "add"}
         firstButtonHandle={() => {
-          variant === "week" ? setVariant("month") : setVariant("week");
+          variant === "half-year" ? setVariant("year") : setVariant("half-year");
         }}
       />
       <Container

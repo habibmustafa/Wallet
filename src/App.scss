@@ -14,12 +14,12 @@ body {
 
 html {
   font-size: 16px;
-  @include media("max", "sm") {
-    font-size: 10px;
-  }
-  @include media("max", "xs") {
-    font-size: 8px;
-  }
+  // @include media("max", "sm") {
+  //   font-size: 10px;
+  // }
+  // @include media("max", "xs") {
+  //   font-size: 8px;
+  // }
 }
 
 #root {

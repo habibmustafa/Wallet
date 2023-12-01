@@ -9,7 +9,7 @@ import { ReactComponent as Settings } from "~/assets/icons/settings.svg";
 import { ReactComponent as Clear } from "~/assets/icons/clear.svg";
 import { IconButton } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
-import CustomCalendar from "../customCalendar";
+import CustomCalendar, { CustomCalendarProps } from "../customCalendar";
 
 type IAppBar = {
   children?: React.ReactNode;
@@ -22,9 +22,7 @@ type IAppBar = {
   datePicker?: boolean;
   datePickerProps?: any;
   calendar?: boolean;
-  calendarProps?: {
-    variant?: string;
-  };
+  calendarProps?: CustomCalendarProps;
 };
 
 const iconMap: Record<string, React.ReactElement> = {
@@ -70,7 +68,7 @@ IAppBar) => {
             {(firstButton || secondButton) && (
             <>
               {firstButton && (
-                <IconButton onClick={firstButtonHandle} style={{ padding: 0 }}>
+                <IconButton onClick={firstButtonHandle} style={{ padding: 0, marginRight: 14 }}>
                   {iconMap[firstButton]}
                 </IconButton>
               )}

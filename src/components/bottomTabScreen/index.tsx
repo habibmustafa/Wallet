@@ -69,7 +69,8 @@ const BottomTabScreen = () => {
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
-            justifyContent={"center"}
+            gap={"2px"}
+            justifyContent={"space-around"}
           >
             {item.icon}
             <Paragraph>{item.title}</Paragraph>
