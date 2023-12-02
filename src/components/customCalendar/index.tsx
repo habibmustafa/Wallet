@@ -5,6 +5,23 @@ import "./style.scss";
 import { ReactComponent as Left } from "~/assets/icons/left.svg";
 import { ReactComponent as Right } from "~/assets/icons/right.svg";
 
+interface CalendarHeaderProps {
+  selectedDate: Date;
+  onPrevClick: () => void;
+  onNextClick: () => void;
+}
+interface CalendarMonthProps {
+  month: Date;
+  selectedDate: Date;
+  variant: string;
+  onClick: (day: Date) => void;
+}
+interface CalendarDayProps {
+  day: Date;
+  selectedDate: Date;
+  onClick: (day: Date) => void;
+  variant: string;
+}
 export interface CustomCalendarProps {
   variant?: "month" | "week" | "year" | "half-year";
 }
@@ -13,20 +30,6 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const weekNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   const startOfWeek = (date: any) => {
     return dateFns.startOfWeek(date, { weekStartsOn: 1 });
@@ -34,7 +37,6 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
   const endOfWeek = (date: any) => {
     return dateFns.endOfWeek(date, { weekStartsOn: 1 });
   };
-
   const generateCalendar = (variant: string) => {
     if (variant === "week") {
       return dateFns.eachDayOfInterval({
@@ -78,15 +80,12 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
     }
   };
 
-  const currentMonth = dateFns.getMonth(selectedDate);
-  const currentMonthName = monthNames[currentMonth];
-
   const handleDateClick = (day: any) => {
     setSelectedDate(day);
   };
 
   return (
-    <Box textAlign="center" className="custom-calendar">
+    <Box className="custom-calendar">
       {variant === "half-year" ? (
         <Stack
           display="grid"
@@ -97,15 +96,13 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
           {generateCalendar(variant).map((month, index) => (
             <Box key={index}>
               <p className="calendar-title">{dateFns.getYear(month)}</p>
-              <button
+              <CalendarMonth
                 key={index}
-                onClick={() => handleDateClick(month)}
-                className={`calendar-month ${
-                  dateFns.isSameMonth(month, selectedDate) ? "selected" : ""
-                }`}
-              >
-                {monthNames[dateFns.getMonth(month)].slice(0, 3)}
-              </button>
+                month={month}
+                variant={variant}
+                selectedDate={selectedDate}
+                onClick={handleDateClick}
+              />
             </Box>
           ))}
         </Stack>
@@ -115,88 +112,133 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
         <>
           <Stack
             display="grid"
-            gridTemplateColumns={"repeat(4, auto)"}
+            gridTemplateColumns={"repeat(3, auto)"}
             gap={1.4}
           >
             {generateCalendar(variant).map((month, index) => (
-              <button
+              <CalendarMonth
                 key={index}
-                onClick={() => handleDateClick(month)}
-                className={`calendar-month ${
-                  dateFns.isSameMonth(month, selectedDate) ? "selected" : ""
-                }`}
-              >
-                {monthNames[dateFns.getMonth(month)].slice(0, 3)}
-              </button>
+                month={month}
+                variant={variant}
+                selectedDate={selectedDate}
+                onClick={handleDateClick}
+              />
             ))}
           </Stack>
-          <Stack
-            mt={2.5}
-            pt={2.5}
-            px={1.2}
-            flexDirection="row"
-            alignItems={"center"}
-            borderTop={"1px solid #1C202E10"}
-            justifyContent={"space-between"}
-          >
-            <Left
-              onClick={() =>
-                setSelectedDate(dateFns.subYears(selectedDate, 1))
-              }
-            />
-            <span className="calendar-monthname">{dateFns.getYear(selectedDate)}</span>
-            <Right
-              onClick={() =>
-                setSelectedDate(dateFns.subYears(selectedDate, -1))
-              }
-            />
-          </Stack>
+          <CalendarHeader
+            selectedDate={selectedDate}
+            onPrevClick={() =>
+              setSelectedDate(dateFns.subYears(selectedDate, 1))
+            }
+            onNextClick={() =>
+              setSelectedDate(dateFns.subYears(selectedDate, -1))
+            }
+          />
         </>
       ) : null}
 
       {variant === "month" || variant === "week" ? (
-        <Stack display="grid" gridTemplateColumns={"repeat(7, auto)"} gap={1.4}>
-          {weekNames.map((day, index) => (
-            <span className="calendar-title" key={index}>
-              {day}
-            </span>
-          ))}
+        <>
+          <Stack
+            display="grid"
+            gridTemplateColumns={"repeat(7, auto)"}
+            gap={1.4}
+          >
+            {weekNames.map((day, index) => (
+              <span className="calendar-title" key={index}>
+                {day}
+              </span>
+            ))}
 
-          {generateCalendar(variant).map((day, index) => (
-            <button
-              className={`calendar-day ${variant} ${
-                dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-              }`}
-              key={index}
-              onClick={() => handleDateClick(day)}
-            >
-              {dateFns.getDate(day)}
-            </button>
-          ))}
-        </Stack>
-      ) : null}
-
-      {variant === "month" ? (
-        <Stack
-          mt={2.5}
-          pt={2.5}
-          px={1.2}
-          flexDirection="row"
-          alignItems={"center"}
-          borderTop={"1px solid #1C202E10"}
-          justifyContent={"space-between"}
-        >
-          <Left
-            onClick={() => setSelectedDate(dateFns.subMonths(selectedDate, 1))}
-          />
-          <span className="calendar-monthname">{currentMonthName}</span>
-          <Right
-            onClick={() => setSelectedDate(dateFns.subMonths(selectedDate, -1))}
-          />
-        </Stack>
+            {generateCalendar(variant).map((day, index) => (
+              <CalendarDay
+                key={index}
+                day={day}
+                selectedDate={selectedDate}
+                onClick={handleDateClick}
+                variant={variant}
+              />
+            ))}
+          </Stack>
+          {variant === "month" ? (
+            <CalendarHeader
+              selectedDate={selectedDate}
+              onPrevClick={() =>
+                setSelectedDate(dateFns.subMonths(selectedDate, 1))
+              }
+              onNextClick={() =>
+                setSelectedDate(dateFns.subMonths(selectedDate, -1))
+              }
+            />
+          ) : null}
+        </>
       ) : null}
     </Box>
   );
 };
 
 export default CustomCalendar;
+
+const CalendarHeader = ({
+  selectedDate,
+  onPrevClick,
+  onNextClick,
+}: CalendarHeaderProps) => {
+  const currentMonthName = dateFns.format(selectedDate, "MMMM");
+
+  return (
+    <Stack
+      mt={2.5}
+      pt={2.5}
+      px={1.2}
+      flexDirection="row"
+      alignItems="center"
+      borderTop="1px solid #1C202E10"
+      justifyContent="space-between"
+    >
+      <Left onClick={onPrevClick} />
+      <span className="calendar-header">
+        {currentMonthName} {dateFns.getYear(selectedDate)}
+      </span>
+      <Right onClick={onNextClick} />
+    </Stack>
+  );
+};
+
+const CalendarMonth = ({
+  month,
+  selectedDate,
+  variant,
+  onClick,
+}: CalendarMonthProps) => {
+  return (
+    <button
+      onClick={() => onClick(month)}
+      className={`calendar-month ${
+        dateFns.isSameMonth(month, selectedDate) ? "selected" : ""
+      } ${variant}`}
+    >
+      {variant === "year"
+        ? dateFns.format(month, "MMMM")
+        : dateFns.format(month, "MMM")}
+    </button>
+  );
+};
+
+const CalendarDay = ({
+  day,
+  selectedDate,
+  onClick,
+  variant,
+}: CalendarDayProps) => {
+  return (
+    <button
+      className={`calendar-day ${variant} ${
+        dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+      }`}
+      onClick={() => onClick(day)}
+    >
+      {dateFns.getDate(day)}
+    </button>
+  );
+};

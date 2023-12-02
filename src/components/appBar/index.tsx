@@ -8,7 +8,7 @@ import { ReactComponent as Add } from "~/assets/icons/add.svg";
 import { ReactComponent as Settings } from "~/assets/icons/settings.svg";
 import { ReactComponent as Clear } from "~/assets/icons/clear.svg";
 import { IconButton } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import CustomCalendar, { CustomCalendarProps } from "../customCalendar";
 
 type IAppBar = {
@@ -33,7 +33,6 @@ const iconMap: Record<string, React.ReactElement> = {
   none: <></>,
 };
 
-
 const CustomAppBar = ({
   children,
   backIcon = true,
@@ -43,15 +42,12 @@ const CustomAppBar = ({
   firstButtonHandle,
   secondButtonHandle,
   calendar,
-  calendarProps
-}: // datePicker,
-// datePickerProps,
-IAppBar) => {
+  calendarProps,
+}: IAppBar) => {
   const navigate = useNavigate();
 
-  
   const onBackHandle = () => {
-    navigate(-1)
+    navigate(-1);
   };
 
   return (
@@ -66,19 +62,25 @@ IAppBar) => {
             )}
             <Text className="appbar-text">{title}</Text>
             {(firstButton || secondButton) && (
-            <>
-              {firstButton && (
-                <IconButton onClick={firstButtonHandle} style={{ padding: 0 }}>
-                  {iconMap[firstButton]}
-                </IconButton>
-              )}
-              {secondButton && (
-                <IconButton onClick={secondButtonHandle} style={{ padding: 0, marginLeft: 14 }}>
-                  {iconMap[secondButton]}
-                </IconButton>
-              )}
-            </>
-          )}
+              <>
+                {firstButton && (
+                  <IconButton
+                    onClick={firstButtonHandle}
+                    style={{ padding: 0 }}
+                  >
+                    {iconMap[firstButton]}
+                  </IconButton>
+                )}
+                {secondButton && (
+                  <IconButton
+                    onClick={secondButtonHandle}
+                    style={{ padding: 0, marginLeft: 14 }}
+                  >
+                    {iconMap[secondButton]}
+                  </IconButton>
+                )}
+              </>
+            )}
           </div>
 
           {calendar && (

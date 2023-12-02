@@ -4,18 +4,18 @@ import "./style.scss";
 import { useState } from "react";
 
 const Daily = () => {
-  const [variant, setVariant] = useState("week");
+  const [variant, setVariant] = useState<"week" | "month">("week");
 
   return (
     <Container motion className="daily">
       <CustomAppBar
         backIcon={false}
-        title="Daily"
+        title="Daily transaction"
         calendar
         calendarProps={{
-          variant: variant as "month" | "week" | "year" | "half-year",
+          variant
         }}
-        firstButton={variant === "week" ? "search" : "add"}
+        firstButton={variant === "week" ? "search" : "clear"}
         firstButtonHandle={() => {
           variant === "week" ? setVariant("month") : setVariant("week");
         }}

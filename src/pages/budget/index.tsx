@@ -4,7 +4,7 @@ import "./style.scss";
 import { useState } from "react";
 
 const Budget = () => {
-  const [variant, setVariant] = useState("half-year");
+  const [variant, setVariant] = useState<"half-year" | "year">("half-year");
   return (
     <Container motion className="budget">
       <CustomAppBar
@@ -13,9 +13,9 @@ const Budget = () => {
         title="Budget"
         calendar
         calendarProps={{
-          variant: variant as "month" | "week" | "year" | "half-year",
+          variant
         }}
-        secondButton={variant === "half-year" ? "search" : "add"}
+        secondButton={variant === "half-year" ? "search" : "clear"}
         secondButtonHandle={() => {
           variant === "half-year"
             ? setVariant("year")
