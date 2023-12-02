@@ -4,29 +4,32 @@ import { useState } from "react";
 import "./style.scss";
 import { ReactComponent as Left } from "~/assets/icons/left.svg";
 import { ReactComponent as Right } from "~/assets/icons/right.svg";
+import { motion } from "framer-motion";
 
-interface CalendarHeaderProps {
+interface CalendarHeaderProps extends CustomCalendarProps {
   selectedDate: Date;
   onPrevClick: () => void;
   onNextClick: () => void;
 }
-interface CalendarMonthProps {
+interface CalendarMonthProps extends CustomCalendarProps {
   month: Date;
   selectedDate: Date;
-  variant: string;
   onClick: (day: Date) => void;
 }
-interface CalendarDayProps {
+interface CalendarDayProps extends CustomCalendarProps {
   day: Date;
   selectedDate: Date;
   onClick: (day: Date) => void;
-  variant: string;
 }
 export interface CustomCalendarProps {
-  variant?: "month" | "week" | "year" | "half-year";
+  variant?: "day" | "month" | any;
+  isHalf?: boolean;
 }
 
-const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
+const CustomCalendar = ({
+  variant = "month",
+  isHalf = false,
+}: CustomCalendarProps) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const weekNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -37,46 +40,45 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
   const endOfWeek = (date: any) => {
     return dateFns.endOfWeek(date, { weekStartsOn: 1 });
   };
+
   const generateCalendar = (variant: string) => {
-    if (variant === "week") {
-      return dateFns.eachDayOfInterval({
-        start: startOfWeek(selectedDate),
-        end: endOfWeek(selectedDate),
-      });
-    } else if (variant === "month") {
-      const startOfMonth = dateFns.startOfMonth(selectedDate);
-      const endOfMonth = dateFns.endOfMonth(selectedDate);
-      const start = startOfWeek(startOfMonth);
-      const end = endOfWeek(endOfMonth);
-      return dateFns.eachDayOfInterval({
-        start,
-        end,
-      });
-    } else if (variant === "half-year") {
-      const startOfYear = dateFns.startOfYear(selectedDate);
-      const startOfJanuary = dateFns.endOfMonth(
-        dateFns.setMonth(startOfYear, 0)
-      );
-      const endOfJune = dateFns.endOfMonth(dateFns.setMonth(startOfYear, 5));
-      const startOfJuly = dateFns.endOfMonth(dateFns.setMonth(startOfYear, 6));
-      return dateFns.eachMonthOfInterval({
-        start: selectedDate >= endOfJune ? startOfJuly : startOfJanuary,
-        end:
-          selectedDate <= endOfJune
-            ? endOfJune
-            : dateFns.endOfYear(selectedDate),
-      });
-    } else if (variant === "year") {
-      const startOfYear = dateFns.startOfYear(selectedDate);
-      const startOfJanuary = dateFns.endOfMonth(
-        dateFns.setMonth(startOfYear, 0)
-      );
-      return dateFns.eachMonthOfInterval({
-        start: startOfJanuary,
-        end: dateFns.endOfYear(selectedDate),
-      });
-    } else {
-      return [];
+    const startOfYear = dateFns.startOfYear(selectedDate);
+    const startOfMonth = dateFns.startOfMonth(selectedDate);
+    const endOfMonth = dateFns.endOfMonth(selectedDate);
+    const startOfWeekOfMonth = startOfWeek(startOfMonth);
+    const endOfWeekOfMonth = endOfWeek(endOfMonth);
+    const startOfJanuary = dateFns.endOfMonth(dateFns.setMonth(startOfYear, 0));
+    const endOfJune = dateFns.endOfMonth(dateFns.setMonth(startOfYear, 5));
+    const startOfJuly = dateFns.endOfMonth(dateFns.setMonth(startOfYear, 6));
+
+    switch (variant) {
+      case "day": {
+        return isHalf
+          ? dateFns.eachDayOfInterval({
+              start: startOfWeek(selectedDate),
+              end: endOfWeek(selectedDate),
+            })
+          : dateFns.eachDayOfInterval({
+              start: startOfWeekOfMonth,
+              end: endOfWeekOfMonth,
+            });
+      }
+      case "month": {
+        return isHalf
+          ? dateFns.eachMonthOfInterval({
+              start: selectedDate >= endOfJune ? startOfJuly : startOfJanuary,
+              end:
+                selectedDate <= endOfJune
+                  ? endOfJune
+                  : dateFns.endOfYear(selectedDate),
+            })
+          : dateFns.eachMonthOfInterval({
+              start: startOfJanuary,
+              end: dateFns.endOfYear(selectedDate),
+            });
+      }
+      default:
+        return [];
     }
   };
 
@@ -86,58 +88,7 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
 
   return (
     <Box className="custom-calendar">
-      {variant === "half-year" ? (
-        <Stack
-          display="grid"
-          gridTemplateColumns={"repeat(6, auto)"}
-          justifyItems={"center"}
-          gap={1.4}
-        >
-          {generateCalendar(variant).map((month, index) => (
-            <Box key={index}>
-              <p className="calendar-title">{dateFns.getYear(month)}</p>
-              <CalendarMonth
-                key={index}
-                month={month}
-                variant={variant}
-                selectedDate={selectedDate}
-                onClick={handleDateClick}
-              />
-            </Box>
-          ))}
-        </Stack>
-      ) : null}
-
-      {variant === "year" ? (
-        <>
-          <Stack
-            display="grid"
-            gridTemplateColumns={"repeat(3, auto)"}
-            gap={1.4}
-          >
-            {generateCalendar(variant).map((month, index) => (
-              <CalendarMonth
-                key={index}
-                month={month}
-                variant={variant}
-                selectedDate={selectedDate}
-                onClick={handleDateClick}
-              />
-            ))}
-          </Stack>
-          <CalendarHeader
-            selectedDate={selectedDate}
-            onPrevClick={() =>
-              setSelectedDate(dateFns.subYears(selectedDate, 1))
-            }
-            onNextClick={() =>
-              setSelectedDate(dateFns.subYears(selectedDate, -1))
-            }
-          />
-        </>
-      ) : null}
-
-      {variant === "month" || variant === "week" ? (
+      {variant === "day" && (
         <>
           <Stack
             display="grid"
@@ -160,7 +111,7 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
               />
             ))}
           </Stack>
-          {variant === "month" ? (
+          {!isHalf && (
             <CalendarHeader
               selectedDate={selectedDate}
               onPrevClick={() =>
@@ -170,9 +121,54 @@ const CustomCalendar = ({ variant = "month" }: CustomCalendarProps) => {
                 setSelectedDate(dateFns.subMonths(selectedDate, -1))
               }
             />
-          ) : null}
+          )}
         </>
-      ) : null}
+      )}
+
+      {variant === "month" && (
+        <>
+          <Stack
+            display="grid"
+            gridTemplateColumns={`repeat(${isHalf ? 6 : 3}, auto)`}
+            justifyItems={"center"}
+            gap={1.4}
+          >
+            {generateCalendar(variant).map((month, index) =>
+              isHalf ? (
+                <Box key={index}>
+                  <p className="calendar-title">{dateFns.getYear(month)}</p>
+                  <CalendarMonth
+                    key={index}
+                    month={month}
+                    isHalf={isHalf}
+                    selectedDate={selectedDate}
+                    onClick={handleDateClick}
+                  />
+                </Box>
+              ) : (
+                <CalendarMonth
+                  key={index}
+                  month={month}
+                  isHalf={isHalf}
+                  selectedDate={selectedDate}
+                  onClick={handleDateClick}
+                />
+              )
+            )}
+          </Stack>
+          {!isHalf && (
+            <CalendarHeader
+              selectedDate={selectedDate}
+              onPrevClick={() =>
+                setSelectedDate(dateFns.subYears(selectedDate, 1))
+              }
+              onNextClick={() =>
+                setSelectedDate(dateFns.subYears(selectedDate, -1))
+              }
+            />
+          )}
+        </>
+      )}
     </Box>
   );
 };
@@ -187,41 +183,48 @@ const CalendarHeader = ({
   const currentMonthName = dateFns.format(selectedDate, "MMMM");
 
   return (
-    <Stack
-      mt={2.5}
-      pt={2.5}
-      px={1.2}
-      flexDirection="row"
-      alignItems="center"
-      borderTop="1px solid #1C202E10"
-      justifyContent="space-between"
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "just", duration: 0.1 }}
     >
-      <Left onClick={onPrevClick} />
-      <span className="calendar-header">
-        {currentMonthName} {dateFns.getYear(selectedDate)}
-      </span>
-      <Right onClick={onNextClick} />
-    </Stack>
+      <Stack
+        mt={2.5}
+        pt={2.5}
+        px={1.2}
+        flexDirection="row"
+        alignItems="center"
+        borderTop="1px solid #1C202E10"
+        justifyContent="space-between"
+      >
+        <Left onClick={onPrevClick} />
+        <span className="calendar-header">
+          {currentMonthName} {dateFns.getYear(selectedDate)}
+        </span>
+        <Right onClick={onNextClick} />
+      </Stack>
+    </motion.div>
   );
 };
 
 const CalendarMonth = ({
   month,
   selectedDate,
-  variant,
+  isHalf,
   onClick,
 }: CalendarMonthProps) => {
   return (
-    <button
+    <motion.button
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "just", duration: 0.1 }}
       onClick={() => onClick(month)}
       className={`calendar-month ${
         dateFns.isSameMonth(month, selectedDate) ? "selected" : ""
-      } ${variant}`}
+      } ${!isHalf ? "year" : ""}`}
     >
-      {variant === "year"
-        ? dateFns.format(month, "MMMM")
-        : dateFns.format(month, "MMM")}
-    </button>
+      {isHalf ? dateFns.format(month, "MMM") : dateFns.format(month, "MMMM")}
+    </motion.button>
   );
 };
 
@@ -229,16 +232,19 @@ const CalendarDay = ({
   day,
   selectedDate,
   onClick,
-  variant,
+  isHalf,
 }: CalendarDayProps) => {
   return (
-    <button
-      className={`calendar-day ${variant} ${
+    <motion.button
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "just", duration: 0.1 }}
+      className={`calendar-day ${isHalf ? "month" : "week"} ${
         dateFns.isSameDay(day, selectedDate) ? "selected" : ""
       }`}
       onClick={() => onClick(day)}
     >
       {dateFns.getDate(day)}
-    </button>
+    </motion.button>
   );
 };

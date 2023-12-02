@@ -51,7 +51,7 @@ const CustomAppBar = ({
   };
 
   return (
-    <Container className="appbar">
+    <Container className={`appbar ${calendarProps?.variant==="year" ? "with-calendar" : ""}`}>
       {!children ? (
         <>
           <div className="appbar-main">

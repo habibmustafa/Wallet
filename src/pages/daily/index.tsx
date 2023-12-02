@@ -4,7 +4,7 @@ import "./style.scss";
 import { useState } from "react";
 
 const Daily = () => {
-  const [variant, setVariant] = useState<"week" | "month">("week");
+  const [isHalf, setIsHalf] = useState(true);
 
   return (
     <Container motion className="daily">
@@ -13,11 +13,12 @@ const Daily = () => {
         title="Daily transaction"
         calendar
         calendarProps={{
-          variant
+          variant: "day",
+          isHalf,
         }}
-        firstButton={variant === "week" ? "search" : "clear"}
+        firstButton={isHalf ? "search" : "clear"}
         firstButtonHandle={() => {
-          variant === "week" ? setVariant("month") : setVariant("week");
+          setIsHalf(!isHalf);
         }}
       />
       <Container

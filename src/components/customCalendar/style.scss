@@ -17,6 +17,7 @@
     align-items: center;
     align-self: center;
     justify-self: center;
+    transition: background-color 0.2s, color 0.2s;
     &.week {
       background: rgba(28, 32, 46, 0.04);
     }
@@ -46,6 +47,7 @@
     align-self: center;
     justify-self: center;
     margin-top: 11.2px;
+    transition: background-color 0.2s, color 0.2s;
 
     &.year {
       background: transparent;

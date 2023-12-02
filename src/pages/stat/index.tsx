@@ -4,7 +4,7 @@ import "./style.scss";
 import { useState } from "react";
 
 const Stat = () => {
-  const [variant, setVariant] = useState<"half-year" | "year">("half-year");
+  const [isHalf, setIsHalf] = useState(true);
 
   return (
     <Container motion className="stat">
@@ -13,11 +13,12 @@ const Stat = () => {
         title="Stat"
         calendar
         calendarProps={{
-          variant
+          variant: "month",
+          isHalf,
         }}
-        firstButton={variant === "half-year" ? "search" : "clear"}
+        firstButton={isHalf ? "search" : "clear"}
         firstButtonHandle={() => {
-          variant === "half-year" ? setVariant("year") : setVariant("half-year");
+          setIsHalf(!isHalf);
         }}
       />
       <Container
