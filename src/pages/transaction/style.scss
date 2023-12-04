@@ -1,0 +1,12 @@
+@import "~/assets/styles/variables.scss";
+
+.transaction {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  
+  &-container {
+    overflow: auto;
+    height: calc(100svh - 152px);
+    margin-top: 72px;
+  }
+}

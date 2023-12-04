@@ -10,6 +10,7 @@ import Stat from "~/pages/stat";
 import Daily from "~/pages/daily";
 import Budget from "~/pages/budget";
 import Profile from "~/pages/profile";
+import Transaction from "~/pages/transaction";
 
 const Login = lazy(() => import("~/pages/auth/login"));
 const Register = lazy(() => import("~/pages/auth/register"));
@@ -38,6 +39,7 @@ const MainRoutes = () => {
               <Route path="/daily" element={<Daily />} />
               <Route path="/budget" element={<Budget />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/transaction" element={<Transaction />} />
             </Route>
               <Route path="/add-account" element={<AddAccount />} />
           </Route>

@@ -5,13 +5,26 @@
   border-radius: 10px;
   max-width: 370px;
 
-  .divider {
+  &.card-without-background {
+    padding: 30px 0;
+  }
+
+  &-divider {
     height: 28px;
     width: 1px;
-    background-color: #fff;
+    background-color: #1C202E;
     opacity: 0.4;
     stroke-width: 0.5;
   }
+
+  &-label {
+    opacity: 0.4;
+  }
+  &-text {
+    font-size: 20px !important;
+    opacity: 0.9;
+  }
+  
   &-background {
     background: linear-gradient(343deg, #7562ff -23.53%, #33c9ff 120.42%);
 
@@ -25,6 +38,13 @@
       font-size: 20px;
       font-family: $font600;
       font-weight: 600;
+    }
+    &-divider {
+      height: 28px;
+      width: 1px;
+      background-color: #fff;
+      opacity: 0.4;
+      stroke-width: 0.5;
     }
   }
 }

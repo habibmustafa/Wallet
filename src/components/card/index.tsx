@@ -1,18 +1,24 @@
 import "./style.scss";
 import { Grid } from "@mui/material";
 import CustomLabel from "../customLabel";
-import Paragraph from "../paragraph";
 import Heading from "../heading";
 import { ReactComponent as Bank } from "~/assets/images/bank.svg";
 
 type CardProps = {
   withBackground?: boolean;
-  name: string;
-  amount: string;
-  date: string;
+  name?: string;
+  amount?: string;
+  date?: string;
+  type?: "Income" | "Expense";
 };
 
-const Card = ({ withBackground, name, amount, date }: CardProps) => {
+const Card = ({
+  withBackground = false,
+  name,
+  amount,
+  date,
+  type,
+}: CardProps) => {
   return !!withBackground ? (
     <Grid
       container
@@ -45,7 +51,7 @@ const Card = ({ withBackground, name, amount, date }: CardProps) => {
             {amount}
           </Heading>
         </div>
-        <div className="divider"></div>
+        <div className="card-background-divider"></div>
         <div>
           <CustomLabel className="card-background-label">Date</CustomLabel>
           <Heading type="h4" className="card-background-text">
@@ -55,10 +61,35 @@ const Card = ({ withBackground, name, amount, date }: CardProps) => {
       </Grid>
     </Grid>
   ) : (
-    <Grid container className="card">
+    <Grid container className="card card-without-background" gap={6}>
       <Grid item xs={12}>
-        <CustomLabel>Bank name</CustomLabel>
-        <Paragraph>United Bank Asia</Paragraph>
+        <CustomLabel className="card-label">Payee</CustomLabel>
+        <Heading type="h2" className="card-text">
+          {name}
+        </Heading>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        display="flex"
+        gap={3}
+        justifyContent="space-between"
+        alignItems="center"
+        maxWidth={"270px"}
+      >
+        <div>
+          <CustomLabel className="card-label">Transaction type</CustomLabel>
+          <Heading type="h4" className="card-text">
+            {type}
+          </Heading>
+        </div>
+        <div className="card-divider"></div>
+        <div>
+          <CustomLabel className="card-label">Date</CustomLabel>
+          <Heading type="h4" className="card-text">
+            {date}
+          </Heading>
+        </div>
       </Grid>
     </Grid>
   );

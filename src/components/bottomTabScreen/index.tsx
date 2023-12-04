@@ -29,6 +29,7 @@ const BottomTabScreen = () => {
     {
       id: 3,
       title: "",
+      path: "/transaction",
       icon: (
         <div className="add-button">
           <Add width={"32px"} height={"32px"} viewBox="0 0 24 24" />

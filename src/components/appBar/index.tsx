@@ -56,7 +56,7 @@ const CustomAppBar = ({
         <>
           <div className="appbar-main">
             {backIcon && (
-              <IconButton onClick={onBackHandle} style={{ padding: 0 }}>
+              <IconButton onClick={onBackHandle} style={{ padding: "0 14px 0 0" }}>
                 {<Backspace />}
               </IconButton>
             )}
@@ -90,7 +90,9 @@ const CustomAppBar = ({
           )}
         </>
       ) : (
-        children
+        <div className="appbar-main">
+          {children}
+        </div>
       )}
     </Container>
   );

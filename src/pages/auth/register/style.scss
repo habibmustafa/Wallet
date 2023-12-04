@@ -3,6 +3,8 @@
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   &-container {
+    height: calc(100svh - 71px);
+    margin-top: 71px;
     overflow: auto;
     display: flex;
     flex-direction: column;
