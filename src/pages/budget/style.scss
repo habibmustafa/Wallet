@@ -6,5 +6,7 @@
   
   &-container {
     overflow: auto;
+    height: calc(100svh - 226px);
+    margin-top: 146px;
   }
 }

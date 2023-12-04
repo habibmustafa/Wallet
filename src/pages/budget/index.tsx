@@ -2,6 +2,8 @@ import CustomAppBar from "~/components/appBar";
 import Container from "~/components/container";
 import "./style.scss";
 import { useState } from "react";
+import NoData from "~/container/noData";
+import NoBudget from "~/assets/images/no-budget.png";
 
 const Budget = () => {
   const [isHalf, setIsHalf] = useState(true);
@@ -27,7 +29,11 @@ const Budget = () => {
         className="budget-container"
         maxWidth="800px"
       >
-        {/* Image */}
+        <NoData
+          image={NoBudget}
+          title="No budget made yet"
+          description="You can add a budget by tapping the + button below"
+        />
       </Container>
     </Container>
   );

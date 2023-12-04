@@ -2,6 +2,8 @@ import CustomAppBar from "~/components/appBar";
 import Container from "~/components/container";
 import "./style.scss";
 import { useState } from "react";
+import NoData from "~/container/noData";
+import NoStat from "~/assets/images/no-stat.png";
 
 const Stat = () => {
   const [isHalf, setIsHalf] = useState(true);
@@ -26,7 +28,11 @@ const Stat = () => {
         className="stat-container"
         maxWidth="800px"
       >
-        {/* Image */}
+        <NoData
+          image={NoStat}
+          title="You have to have atleast 1 month of transaction"
+          description="You can add transaction by tapping the + button below"
+        />
       </Container>
     </Container>
   );

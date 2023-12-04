@@ -107,7 +107,7 @@ const CustomCalendar = ({
                 day={day}
                 selectedDate={selectedDate}
                 onClick={handleDateClick}
-                variant={variant}
+                isHalf={isHalf}
               />
             ))}
           </Stack>
@@ -215,7 +215,7 @@ const CalendarMonth = ({
 }: CalendarMonthProps) => {
   return (
     <motion.button
-      initial={{ opacity: 0, y: -8 }}
+      initial={{ opacity: 0, y: -6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "just", duration: 0.1 }}
       onClick={() => onClick(month)}
@@ -236,12 +236,12 @@ const CalendarDay = ({
 }: CalendarDayProps) => {
   return (
     <motion.button
-      initial={{ opacity: 0, y: -10 }}
+      initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "just", duration: 0.1 }}
-      className={`calendar-day ${isHalf ? "month" : "week"} ${
+      className={`calendar-day ${isHalf ? "week" : "month"} ${
         dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-      }`}
+      } ${dateFns.isToday(day) ? "today" : ""}`}
       onClick={() => onClick(day)}
     >
       {dateFns.getDate(day)}

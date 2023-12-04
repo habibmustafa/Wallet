@@ -6,6 +6,7 @@ type IRow = {
   className?: string;
   justifyContent?: string;
   alignItems?: string;
+  flexDirection?: "row" | "column";
   gap?: string;
   width?: string;
   maxWidth?: string;
@@ -21,6 +22,7 @@ const Row = ({
   className,
   justifyContent,
   alignItems,
+  flexDirection,
   gap,
   width,
   maxWidth,
@@ -37,6 +39,7 @@ const Row = ({
       style={{
         justifyContent,
         alignItems,
+        flexDirection,
         gap,
         width,
         maxWidth,
