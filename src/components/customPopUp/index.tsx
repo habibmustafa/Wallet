@@ -10,8 +10,9 @@ type customPopUpProps = {
   open: boolean;
   handleClose: () => void;
   children?: React.ReactNode;
+  closeIcon?: boolean;
 };
-const CustomPopUp = ({ open, handleClose, children }: customPopUpProps) => {
+const CustomPopUp = ({ open, handleClose, children, closeIcon=true }: customPopUpProps) => {
   return (
     <Dialog
       fullScreen
@@ -20,9 +21,9 @@ const CustomPopUp = ({ open, handleClose, children }: customPopUpProps) => {
       TransitionComponent={Transition}
     >
       <div className="custom-modal">
-        <Row className="custom-modal-header">
+        {closeIcon && <Row className="custom-modal-header">
           <Plus onClick={handleClose} />
-        </Row>
+        </Row>}
         <Container className="custom-modal-container">{children}</Container>
       </div>
     </Dialog>

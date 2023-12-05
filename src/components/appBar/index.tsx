@@ -13,12 +13,13 @@ import CustomCalendar, { CustomCalendarProps } from "../customCalendar";
 
 type IAppBar = {
   children?: React.ReactNode;
-  backIcon?: boolean;
+  backIcon?: "backspace" | "clear" | false;
   title?: string;
-  firstButton?: "search" | "add" | "settings" | "clear" | undefined;
-  secondButton?: "search" | "add" | "settings" | "clear" | undefined;
+  firstButton?: "search" | "add" | "settings" | "clear" | false;
+  secondButton?: "search" | "add" | "settings" | "clear" | false;
   firstButtonHandle?: () => void;
   secondButtonHandle?: () => void;
+  closeHandle?: () => void;
   datePicker?: boolean;
   datePickerProps?: any;
   calendar?: boolean;
@@ -30,17 +31,19 @@ const iconMap: Record<string, React.ReactElement> = {
   add: <Add />,
   settings: <Settings />,
   clear: <Clear />,
+  backspace: <Backspace />,
   none: <></>,
 };
 
 const CustomAppBar = ({
   children,
-  backIcon = true,
+  backIcon = "backspace",
   title,
   firstButton = "search",
   secondButton,
   firstButtonHandle,
   secondButtonHandle,
+  closeHandle,
   calendar,
   calendarProps,
 }: IAppBar) => {
@@ -56,8 +59,8 @@ const CustomAppBar = ({
         <>
           <div className="appbar-main">
             {backIcon && (
-              <IconButton onClick={onBackHandle} style={{ padding: "0 14px 0 0" }}>
-                {<Backspace />}
+              <IconButton onClick={closeHandle || onBackHandle} style={{ padding: "0 14px 0 0" }}>
+                {iconMap[backIcon]}
               </IconButton>
             )}
             <Text className="appbar-text">{title}</Text>

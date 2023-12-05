@@ -8,10 +8,13 @@ import { ReactComponent as Profile } from "~/assets/icons/profile.svg";
 import { ReactComponent as Add } from "~/assets/icons/add.svg";
 import Paragraph from "../paragraph";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "~/redux/store";
+import { togglePopUp } from "~/redux/reducers/main";
 
 const BottomTabScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
   const items = [
     {
@@ -29,9 +32,12 @@ const BottomTabScreen = () => {
     {
       id: 3,
       title: "",
-      path: "/transaction",
+      // path: "/add-transaction",
       icon: (
-        <div className="add-button">
+        <div
+          className="add-button"
+          onClick={() => dispatch(togglePopUp("addTransaction"))}
+        >
           <Add width={"32px"} height={"32px"} viewBox="0 0 24 24" />
         </div>
       ),
