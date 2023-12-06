@@ -5,6 +5,8 @@
   grid-template-rows: auto minmax(0, 1fr);
   
   &-container {
+    height: calc(100svh - 72px);
+    margin-top: 72px;
     overflow: auto;
   }
 }

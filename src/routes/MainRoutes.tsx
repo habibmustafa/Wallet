@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import Loading from "~/components/loading";
 
 import InnerRoute from "./InnerRoute";
 import PublicRoute from "./PublicRoute";
@@ -11,6 +12,7 @@ import Daily from "~/pages/daily";
 import Budget from "~/pages/budget";
 import Profile from "~/pages/profile";
 import Transaction from "~/pages/transaction";
+import { useAppSelector } from "~/redux/store";
 
 const Login = lazy(() => import("~/pages/auth/login"));
 const Register = lazy(() => import("~/pages/auth/register"));
@@ -21,10 +23,12 @@ const AddAccount = lazy(() => import("~/pages/addAccount"));
 // const Profile = lazy(() => import("~/pages/profile"));
 
 const MainRoutes = () => {
+  const { isLoading } = useAppSelector((state) => state.main);
+
   return (
     <>
       {/* fallback={<Loading opacity="full" open={true} />} */}
-      <Suspense>
+      <Suspense fallback={<Loading />}>
         <Routes>
           {/* !!!Check Public Route */}
           <Route path="/login" element={<PublicRoute />}>
@@ -41,12 +45,13 @@ const MainRoutes = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/transaction" element={<Transaction />} />
             </Route>
-              <Route path="/add-account" element={<AddAccount />} />
+            <Route path="/add-account" element={<AddAccount />} />
           </Route>
           <Route path="/download" element={<Download />} />
           {/* <Route path="*" element={<Navigate to="/home" />} /> */}
           {/*<Route path="/*" element={<NotFound/>}/>*/}
         </Routes>
+        {isLoading && <Loading className="half" />}
       </Suspense>
     </>
   );

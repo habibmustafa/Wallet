@@ -12,12 +12,18 @@ import { Link } from "react-router-dom";
 import IconButton from "~/components/iconButton";
 import CustomAppBar from "~/components/appBar";
 import { useAppDispatch } from "~/redux/store";
-import { setLogin } from "~/redux/reducers/auth";
+import { signInWithPassword } from "~/redux/actions/auth";
 
 const Login = () => {
   const methods = useForm();
   const { email, password } = methods.watch();
   const dispatch = useAppDispatch();
+
+  const onSubmit = methods.handleSubmit( async(data) => {
+    // console.log(data);
+    // dispatch(setLogin());
+    dispatch(signInWithPassword(data));
+  });
 
   return (
     <Container motion className="login">
@@ -58,13 +64,7 @@ const Login = () => {
                 type="pass"
                 placeholder="************"
               />
-              <IconButton
-                onClick={methods.handleSubmit((data) => {
-                  console.log(data);
-                  dispatch(setLogin());
-                })}
-                disabled={!email || !password}
-              >
+              <IconButton onClick={onSubmit} disabled={!email || !password}>
                 <RightButton />
               </IconButton>
             </Grid>

@@ -5,6 +5,7 @@ const initialState = {
   popUps: {
     addTransaction: false,
   },
+  isLoading: false,
 };
 const main = createSlice({
   name: "main",
@@ -13,9 +14,12 @@ const main = createSlice({
     togglePopUp(state: any, { payload }) {
       state.popUps[payload] = !state.popUps[payload];
     },
+    setIsLoading(state: any, { payload }) {
+      state.isLoading = payload;
+    }
   },
   extraReducers: () => {},
 });
 
-export const { togglePopUp } = main.actions;
+export const { togglePopUp, setIsLoading } = main.actions;
 export default main.reducer;

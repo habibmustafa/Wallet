@@ -10,7 +10,7 @@ const Loading: React.FC<ILoading> = ({ style, className }) => {
     <div className={`loading ${className}`} style={style}>
       <div className="loading-inner">
         <div className="root">
-          <CircularProgress />
+          <CircularProgress size={28} />
         </div>
       </div>
     </div>

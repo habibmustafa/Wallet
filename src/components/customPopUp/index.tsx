@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog, Slide } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import { ReactComponent as Plus } from "~/assets/icons/plus.svg";
@@ -13,6 +13,20 @@ type customPopUpProps = {
   closeIcon?: boolean;
 };
 const CustomPopUp = ({ open, handleClose, children, closeIcon=true }: customPopUpProps) => {
+  useEffect(() => {
+    const handleBackButton = (event: any) => {
+      event.preventDefault();
+
+      handleClose();
+    };
+
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => {
+      window.removeEventListener('popstate', handleBackButton);
+    };
+  }, []);
+
   return (
     <Dialog
       fullScreen
