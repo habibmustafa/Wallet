@@ -12,11 +12,15 @@ const main = createSlice({
   initialState,
   reducers: {
     togglePopUp(state: any, { payload }) {
-      state.popUps[payload] = !state.popUps[payload];
+      if (payload?.name) {
+        state.popUps[payload.name] = payload.value;
+      } else {
+        state.popUps[payload] = !state.popUps[payload];
+      }
     },
     setIsLoading(state: any, { payload }) {
       state.isLoading = payload;
-    }
+    },
   },
   extraReducers: () => {},
 });

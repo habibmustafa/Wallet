@@ -24,7 +24,7 @@ const AddTransaction = ({ open }: { open: boolean }) => {
   // };
 
   const handleClose = () => {
-    dispatch(togglePopUp("addTransaction"));
+    dispatch(togglePopUp({ name: "addTransaction", value: false }));
     setActiveStep(1);
   };
   return (
@@ -71,10 +71,20 @@ const AddTransaction = ({ open }: { open: boolean }) => {
                 </Heading>
               </Grid>
               <Grid item xs={6}>
-                <Item icon={<Income />} title="Income" iconBackColor="#33C9FF" onClick={handleNext} />
+                <Item
+                  icon={<Income />}
+                  title="Income"
+                  iconBackColor="#33C9FF"
+                  onClick={handleNext}
+                />
               </Grid>
               <Grid item xs={6}>
-                <Item icon={<Expense />} title="Expense" iconBackColor="#FF3378" onClick={handleNext} />
+                <Item
+                  icon={<Expense />}
+                  title="Expense"
+                  iconBackColor="#FF3378"
+                  onClick={handleNext}
+                />
               </Grid>
             </Grid>
           )}

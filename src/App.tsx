@@ -6,7 +6,7 @@ import { getSession } from "./redux/actions/auth.ts";
 
 function App() {
   const dispatch = useAppDispatch();
-  
+
   useEffect(() => {
     dispatch(getSession());
   }, []);

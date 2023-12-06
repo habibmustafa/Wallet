@@ -25,7 +25,7 @@ const CustomPopUp = ({ open, handleClose, children, closeIcon=true }: customPopU
     return () => {
       window.removeEventListener('popstate', handleBackButton);
     };
-  }, []);
+  }, [handleClose]);
 
   return (
     <Dialog
