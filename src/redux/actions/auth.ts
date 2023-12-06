@@ -1,16 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { supabase } from "~/supabase";
 
-const getSession = createAsyncThunk(
-  "auth/getSession",
-  async (_, thunkAPI) => {
-    const { data, error } = await supabase.auth.getUser()
-    if (!!error?.message) {
-      return thunkAPI.rejectWithValue(error?.message);
-    }
-    return data;
+const getUser = createAsyncThunk("auth/getUser", async (_, thunkAPI) => {
+  const { data, error } = await supabase.auth.getUser();
+  if (!!error?.message) {
+    return thunkAPI.rejectWithValue(error?.message);
   }
-)
+  return data.user;
+});
 
 const signInWithPassword = createAsyncThunk(
   "auth/signInWithPassword",
@@ -27,15 +24,29 @@ const signInWithPassword = createAsyncThunk(
   }
 );
 
-const signOut = createAsyncThunk(
-  "auth/signOut",
-  async (_, thunkAPI) => {
-    const { error } = await supabase.auth.signOut();
-    if (!!error?.message) {
-      return thunkAPI.rejectWithValue(error?.message);
-    }
-    return null;
+const signUp = createAsyncThunk("auth/signUp", async (data: any, thunkAPI) => {
+  const { email, password } = data;
+  const { data: user, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        name: data.name,
+      },
+    },
+  });
+  if (!!error?.message) {
+    return thunkAPI.rejectWithValue(error?.message);
   }
-)
+  return { user };
+});
 
-export { getSession, signInWithPassword, signOut };
+const signOut = createAsyncThunk("auth/signOut", async (_, thunkAPI) => {
+  const { error } = await supabase.auth.signOut();
+  if (!!error?.message) {
+    return thunkAPI.rejectWithValue(error?.message);
+  }
+  return null;
+});
+
+export { getUser, signInWithPassword, signUp, signOut };

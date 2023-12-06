@@ -3,10 +3,11 @@ import Container from "~/components/container";
 import "./style.scss";
 import Button from "~/components/button";
 import { signOut } from "~/redux/actions/auth";
-import { useAppDispatch } from "~/redux/store";
+import { useAppDispatch, useAppSelector } from "~/redux/store";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
 
   return (
     <Container motion className="profile">
@@ -21,7 +22,7 @@ const Profile = () => {
             dispatch(signOut());
           }}
         >
-          Sign Out
+          Sign Out {user?.name}
         </Button>
         {/* Image */}
       </Container>

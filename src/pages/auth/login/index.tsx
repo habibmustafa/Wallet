@@ -20,8 +20,6 @@ const Login = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = methods.handleSubmit( async(data) => {
-    // console.log(data);
-    // dispatch(setLogin());
     dispatch(signInWithPassword(data));
   });
 

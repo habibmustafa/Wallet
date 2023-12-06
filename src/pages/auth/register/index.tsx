@@ -9,14 +9,20 @@ import InputUseForm from "~/components/inputUseForm";
 import { FormProvider, useForm } from "react-hook-form";
 import { Grid } from "@mui/material";
 import Button from "~/components/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import IconButton from "~/components/iconButton";
 import Paragraph from "~/components/paragraph";
+import { useAppDispatch } from "~/redux/store";
+import { signUp } from "~/redux/actions/auth";
 
 const Register = () => {
   const methods = useForm();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { name, email, password } = methods.watch();
+
+  const onSubmit = methods.handleSubmit( async(data) => {
+    dispatch(signUp(data));
+  });
 
   return (
     <Container motion className="register">
@@ -72,10 +78,7 @@ const Register = () => {
                 // validation={inputValidationProps("", true)}
               />
               <IconButton
-                onClick={methods.handleSubmit((data) => {
-                  console.log(data);
-                  navigate("/");
-                })}
+                onClick={onSubmit}
                 disabled={!name || !email || !password}
               >
                 <RightButton />

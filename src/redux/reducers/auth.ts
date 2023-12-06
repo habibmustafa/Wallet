@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getSession, signInWithPassword, signOut } from "../actions/auth";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { getUser, signInWithPassword, signOut, signUp } from "../actions/auth";
 
 const initialState: any = {
   // auth
   isAuth: null,
   loading: false,
+  user: null,
 };
 const auth = createSlice({
   name: "auth",
@@ -19,19 +20,33 @@ const auth = createSlice({
   },
   extraReducers: (builder) => {
     // Session
-    builder.addCase(getSession.fulfilled, (state, _action) => {
+    builder.addCase(getUser.fulfilled, (state, action: PayloadAction<any>) => {
       state.isAuth = true;
+      state.user = action.payload.user_metadata
     });
-    builder.addCase(getSession.rejected, (state, _action) => {
+    builder.addCase(getUser.rejected, (state, _action) => {
       state.isAuth = false;
     });
     
     // Login
-    builder.addCase(signInWithPassword.fulfilled, (state, _action) => {
+    builder.addCase(signInWithPassword.fulfilled, (state, action: PayloadAction<any>) => {
       state.isAuth = true;
+      state.user = action.payload.user.user_metadata
+      console.log(action.payload);
+      
       // const { user } = action.payload;
     });
     builder.addCase(signInWithPassword.rejected, (state, _action) => {
+      state.isAuth = false;
+    });
+
+    // signUp
+    builder.addCase(signUp.fulfilled, (state, action: PayloadAction<any>) => {
+      state.isAuth = true;
+      state.user = action.payload.user.user_metadata
+      // const { user } = action.payload;
+    });
+    builder.addCase(signUp.rejected, (state, _action) => {
       state.isAuth = false;
     });
 
