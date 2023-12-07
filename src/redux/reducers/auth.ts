@@ -22,7 +22,7 @@ const auth = createSlice({
     // Session
     builder.addCase(getUser.fulfilled, (state, action: PayloadAction<any>) => {
       state.isAuth = true;
-      state.user = action.payload.user_metadata
+      state.user = action?.payload?.user_metadata
     });
     builder.addCase(getUser.rejected, (state, _action) => {
       state.isAuth = false;
@@ -39,6 +39,13 @@ const auth = createSlice({
     builder.addCase(signInWithPassword.rejected, (state, _action) => {
       state.isAuth = false;
     });
+
+    // builder.addCase(signInWithOAuth.fulfilled, (state, action: PayloadAction<any>) => {
+    //   console.log(action.payload);
+    // });
+    // builder.addCase(signInWithOAuth.rejected, (state, _action) => {
+    // });
+
 
     // signUp
     builder.addCase(signUp.fulfilled, (state, action: PayloadAction<any>) => {

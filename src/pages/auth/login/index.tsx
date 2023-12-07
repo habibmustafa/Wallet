@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import IconButton from "~/components/iconButton";
 import CustomAppBar from "~/components/appBar";
 import { useAppDispatch } from "~/redux/store";
-import { signInWithPassword } from "~/redux/actions/auth";
+import { signInWithOAuth, signInWithPassword } from "~/redux/actions/auth";
 
 const Login = () => {
   const methods = useForm();
@@ -79,7 +79,7 @@ const Login = () => {
           style={{ borderColor: "#3B5998", color: "#3B5998", width: "100%" }}
           variant="outlined"
           onClick={() => {
-            console.log("clicked");
+            dispatch(signInWithOAuth());
           }}
         >
           Login with Google
