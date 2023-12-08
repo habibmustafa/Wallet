@@ -40,22 +40,25 @@ export const signInWithOAuth = createAsyncThunk(
   }
 );
 
-export const signUp = createAsyncThunk("auth/signUp", async (data: any, thunkAPI) => {
-  const { email, password } = data;
-  const { data: user, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        name: data.name,
+export const signUp = createAsyncThunk(
+  "auth/signUp",
+  async (data: any, thunkAPI) => {
+    const { email, password } = data;
+    const { data: user, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name: data.name,
+        },
       },
-    },
-  });
-  if (!!error?.message) {
-    return thunkAPI.rejectWithValue(error?.message);
+    });
+    if (!!error?.message) {
+      return thunkAPI.rejectWithValue(error?.message);
+    }
+    return { user };
   }
-  return { user };
-});
+);
 
 export const signOut = createAsyncThunk("auth/signOut", async (_, thunkAPI) => {
   const { error } = await supabase.auth.signOut();
@@ -63,4 +66,17 @@ export const signOut = createAsyncThunk("auth/signOut", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error?.message);
   }
   return null;
+});
+
+export const select = createAsyncThunk("auth/select", async (_, thunkAPI) => {
+  const { data, error } = await supabase.from("Transactions").select();
+
+  console.log(data);
+  
+  if (!!error?.message) {
+    console.log("err", error.message);
+    
+    return thunkAPI.rejectWithValue(error?.message);
+  }
+  return { data };
 });
