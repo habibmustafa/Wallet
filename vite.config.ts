@@ -10,41 +10,47 @@ import * as path from "path";
 // PWA
 const manifestForPlugIn: any = {
   registerType: "autoUpdate",
-  includeAssests: ["favicon.ico", "apple-touch-icon.png", "maskable_icon.png"],
+  // includeAssests: ["favicon.ico", "apple-touch-icon.png", "maskable_icon.png"],
   manifest: {
     name: "Wallet",
     short_name: "wallet",
     description: "I am a wallet app",
     theme_color: "#fcfcfc",
-    background_color: "#fcfcfc",
+    background_color: "#13447B",
     display: "standalone",
     scope: "/",
     start_url: "/",
     orientation: "portrait",
     icons: [
       {
-        src: "/android-chrome-192x192.png",
-        sizes: "192x192",
+        src: "/pwa/Icon32.png",
+        sizes: "32x32",
         type: "image/png",
-        purpose: "favicon",
       },
       {
-        src: "/android-chrome-512x512.png",
-        sizes: "512x512",
+        src: "/pwa/Icon48.png",
+        sizes: "48x48",
         type: "image/png",
-        purpose: "favicon",
       },
       {
-        src: "/apple-touch-icon.png",
-        sizes: "180x180",
+        src: "/pwa/Icon72.png",
+        sizes: "72x72",
         type: "image/png",
-        purpose: "apple touch icon",
       },
       {
-        src: "/maskable_icon.png",
-        sizes: "512x512",
+        src: "/pwa/Icon92.png",
+        sizes: "92x92",
         type: "image/png",
-        purpose: "any maskable",
+      },
+      {
+        src: "/pwa/Icon144.png",
+        sizes: "144x144",
+        type: "image/png",
+      },
+      {
+        src: "/pwa/Icon196.png",
+        sizes: "196x196",
+        type: "image/png",
       },
     ],
   },
@@ -84,7 +90,11 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     VitePWA({
       ...manifestForPlugIn,
-      includeAssets: ["/public/fonts/GT-Walsheim-Pro-Regular.OTF", "/public/fonts/GT-Walsheim-Pro-Medium.OTF", "/public/fonts/GT-Walsheim-Pro-Bold.OTF"],
+      includeAssets: [
+        "/public/fonts/GT-Walsheim-Pro-Regular.OTF",
+        "/public/fonts/GT-Walsheim-Pro-Medium.OTF",
+        "/public/fonts/GT-Walsheim-Pro-Bold.OTF",
+      ],
       devOptions: {
         enabled: true,
       },
